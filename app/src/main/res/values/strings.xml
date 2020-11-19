@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Arabian Pure</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="password">Password</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="login">Login</string>
+    <string name="forgot_your_password">Forgot Your Password?</string>
+    <string name="don_t_have_a_account">Don\'t have a account?</string>
+    <string name="register">Register</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="already_have_account">Already have account?</string>
+    <string name="send_password_rest_link">Send password rest link</string>
+    <string name="products">products</string>
+    <string name="category_image">category image</string>
+    <string name="category_title">Category title</string>
+    <string name="categories">Categories</string>
+    <string name="just_for_you">Just For You</string>
+    <string name="show_all">Show All</string>
+    <string name="title">Title</string>
+    <string name="available">Available:</string>
+    <string name="description">Description</string>
+    <string name="sku">SKU:</string>
+    <string name="banner">Banner</string>
+    <string name="wishlist">Wishlist</string>
+    <string name="quantity">Quantity</string>
+    <string name="add_to_cart">Add to cart</string>
+</resources>

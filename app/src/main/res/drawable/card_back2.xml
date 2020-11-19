@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <gradient android:type="sweep"
+        android:startColor="@color/white"
+        android:endColor="@color/button_color"
+        android:centerY="0.5"
+        android:centerX="0"
+        />
+
+
+
+
+
+
+</shape>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.SingleProductActivity"
+    tools:visibility="visible">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/single_product_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/button_color"
+        app:titleTextColor="@color/white"
+        app:elevation="20dp"
+        app:navigationIcon="@drawable/ic_arrow_back_white"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+        <ImageView
+            android:id="@+id/single_product_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150sdp" />
+
+        <TextView
+            android:id="@+id/single_product_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_16sdp"
+            android:text="@string/title"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:id="@+id/single_product_stock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/available"
+            android:textSize="@dimen/_14sdp"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/single_product_wishlist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_14sdp"
+            android:text="@string/wishlist"
+            android:layout_marginTop="10dp"
+            app:drawableLeftCompat="@drawable/ic_baseline_favorite_border_24"
+            app:drawableStartCompat="@drawable/ic_baseline_favorite_border_24"
+            android:visibility="visible"
+            android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/single_product_wishlisted"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_14sdp"
+            android:text="@string/wishlist"
+            android:layout_marginTop="10dp"
+            app:drawableLeftCompat="@drawable/ic_baseline_favorite_24"
+            app:drawableStartCompat="@drawable/ic_baseline_favorite_24"
+            android:visibility="gone"
+            android:textColor="@color/black"
+            />
+        <TextView
+            android:id="@+id/single_product_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_14sdp"
+            android:text="@string/description"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"/>
+
+
+
+        <TextView
+            android:id="@+id/single_product_sku"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:text="@string/sku"
+            android:layout_marginTop="10dp"/>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray"
+            android:layout_marginTop="10dp"/>
+
+
+
+        <TextView
+            android:id="@+id/single_product_quantity_tview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_14sdp"
+            android:textColor="@color/black"
+            android:text="@string/quantity"
+            android:layout_marginTop="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
+            <TextView
+                android:id="@+id/single_product_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_14sdp"
+                android:textColor="@color/black"
+                android:text="1"/>
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/quantity_sub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:src="@drawable/ic_baseline_remove_circle_outline_24"
+                android:layout_marginStart="@dimen/_50sdp"
+                android:layout_marginLeft="@dimen/_50sdp" />
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/quantity_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:src="@drawable/ic_baseline_add_circle_outline_24"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                />
+        </LinearLayout>
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_to_cart"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="bottom|end"
+            android:textSize="@dimen/_16sdp"/>
+    </LinearLayout>
+
+</LinearLayout>
