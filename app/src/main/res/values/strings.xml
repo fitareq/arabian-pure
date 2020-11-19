@@ -28,4 +28,5 @@
     <string name="wishlist">Wishlist</string>
     <string name="quantity">Quantity</string>
     <string name="add_to_cart">Add to cart</string>
+    <string name="notification">Notification</string>
 </resources>

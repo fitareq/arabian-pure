@@ -6,7 +6,10 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
@@ -17,6 +20,8 @@ import com.youthfireit.arabianpure.R;
 import com.youthfireit.arabianpure.model.Login;
 import com.youthfireit.arabianpure.network.APIinstance;
 import com.youthfireit.arabianpure.network.ArabianPureApi;
+
+import org.jetbrains.annotations.NotNull;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -78,16 +83,21 @@ public class LoginActivity extends AppCompatActivity {
             Call<Login> call = arabianPureApi.loginUser(login);
             call.enqueue(new Callback<Login>() {
                 @Override
-                public void onResponse(Call<Login> call, Response<Login> response)
+                public void onResponse(@NotNull Call<Login> call, @NotNull Response<Login> response)
                 {
                     if (!response.isSuccessful())
                     {
-                        Toast.makeText(LoginActivity.this, response.message(), Toast.LENGTH_SHORT).show();
-                    }
+                        String message = response.message();
+                        customToastShow(message);
+                        //Toast.makeText(LoginActivity.this, response.message(), Toast.LENGTH_SHORT).show();
+
+                    }else
                     /*if (response.body().getStatus_code().equals("201"))
-                    {*/
-                        Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                    {*/ {
+                        //Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                        customToastShow("Login Successful");
                         goToHomePage();
+                    }
 
                 }
 
@@ -97,6 +107,19 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    private void customToastShow(String message)
+    {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.custom_toast, findViewById(R.id.custom_toast_layout));
+        TextView textView = layout.findViewById(R.id.custom_toast_text_view);
+        textView.setText(message);
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.CENTER_VERTICAL,0,100);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
     }
 
     private void goToHomePage()

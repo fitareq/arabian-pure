@@ -17,6 +17,8 @@ import com.youthfireit.arabianpure.model.Register;
 import com.youthfireit.arabianpure.network.APIinstance;
 import com.youthfireit.arabianpure.network.ArabianPureApi;
 
+import org.jetbrains.annotations.NotNull;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -96,10 +98,11 @@ public class RegisterActivity extends AppCompatActivity {
             Call<Register> call = arabianPureApi.registerUser(register);
             call.enqueue(new Callback<Register>() {
                 @Override
-                public void onResponse(Call<Register> call, Response<Register> response) {
-                    if (!response.isSuccessful())
+                public void onResponse(@NotNull Call<Register> call, @NotNull Response<Register> response) {
+                    if (!response.isSuccessful()) {
                         Toast.makeText(RegisterActivity.this, response.message(), Toast.LENGTH_SHORT).show();
-                    if (response.body().getStatus_code().equals("201"))
+                    }
+                    else
                     {
                         Toast.makeText(RegisterActivity.this, "registration successful", Toast.LENGTH_SHORT).show();
                         goToLoginPage();
@@ -107,7 +110,8 @@ public class RegisterActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<Register> call, Throwable t) {
+                public void onFailure(@NotNull Call<Register> call, @NotNull Throwable t)
+                {
 
                 }
             });
