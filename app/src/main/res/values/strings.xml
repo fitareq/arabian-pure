@@ -29,4 +29,5 @@
     <string name="quantity">Quantity</string>
     <string name="add_to_cart">Add to cart</string>
     <string name="notification">Notification</string>
+    <string name="breakfast">Breakfast</string>
 </resources>

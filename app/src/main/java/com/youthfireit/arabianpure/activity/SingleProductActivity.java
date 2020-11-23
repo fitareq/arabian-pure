@@ -32,7 +32,8 @@ public class SingleProductActivity extends AppCompatActivity {
     private MaterialButton addToCart;
     private int PQuantity = 1;
     Toolbar toolbar;
-    private List<Products> productsList;
+    private Products productsList;
+    private String slug;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,11 +41,11 @@ public class SingleProductActivity extends AppCompatActivity {
 
 
         String image = getIntent().getStringExtra("image");
-        String slug = getIntent().getStringExtra("slug");
-        String title = getIntent().getStringExtra("title");
+        slug = getIntent().getStringExtra("slug");
+        /*String title = getIntent().getStringExtra("title");
         String description = getIntent().getStringExtra("description");
         String quantity = getIntent().getStringExtra("quantity");
-        String sku = getIntent().getStringExtra("sku");
+        String sku = getIntent().getStringExtra("sku");*/
         toolbar = findViewById(R.id.single_product_toolbar);
         imageView = findViewById(R.id.single_product_image_view);
         textView = findViewById(R.id.single_product_title);
@@ -61,12 +62,12 @@ public class SingleProductActivity extends AppCompatActivity {
 
 
         Picasso.get().load(image).into(imageView);
-        textView.setText(title);
+       /* textView.setText(title);
         productDescription.setText(description);
         String st = "Available: "+quantity;
         productStock.setText(st);
         productSku.setText(sku);
-        toolbar.setTitle(title);
+        toolbar.setTitle(title);*/
         //toolbar.setTitle(slug);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +76,7 @@ public class SingleProductActivity extends AppCompatActivity {
                 goToHome();
             }
         });
-        //loadProductData();
+        loadProductData();
 
         //toolbar.setTitle(slug);
         //textView.setText(productsList.get(0).getTitle());
@@ -116,13 +117,13 @@ public class SingleProductActivity extends AppCompatActivity {
 
 
 
-   /* private void loadProductData()
+   private void loadProductData()
     {
         ArabianPureApi arabianPureApi = APIinstance.retroInstace().create(ArabianPureApi.class);
-        Call<List<Products>> call = arabianPureApi.getSingleProduct(slug);
-        call.enqueue(new Callback<List<Products>>() {
+        Call<Products> call = arabianPureApi.getSingleProduct(slug);
+        call.enqueue(new Callback<Products>() {
             @Override
-            public void onResponse(Call<List<Products>> call, Response<List<Products>> response)
+            public void onResponse(Call<Products> call, Response<Products> response)
             {
                 if (!response.isSuccessful())
                 {
@@ -131,18 +132,25 @@ public class SingleProductActivity extends AppCompatActivity {
                 {
 
                     productsList = response.body();
-                    textView.setText(productsList.get(productsList.size()-1).getTitle());
+                    //textView.setText(productsList.get(productsList.size()-1).getTitle());
                     //getSupportActionBar().setTitle(productsList.size());
                     //toolbar.setTitle(productsList.size());
+
+
+                    textView.setText(productsList.getTitle());
+                    productDescription.setText(productsList.getDescription());
+                    String st = "Available: "+productsList.getQuantity();
+                    productStock.setText(st);
+                    productSku.setText(productsList.getSku());
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Products>> call, Throwable t) {
+            public void onFailure(Call<Products> call, Throwable t) {
 
             }
         });
-    }*/
+    }
 
     private void goToHome()
     {

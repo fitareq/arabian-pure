@@ -2,7 +2,6 @@ package com.youthfireit.arabianpure.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.denzcoskun.imageslider.ImageSlider;
-import com.denzcoskun.imageslider.models.SlideModel;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
@@ -38,15 +36,11 @@ import com.youthfireit.arabianpure.adapter.SliderAdapter;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HomeFragment extends Fragment implements View.OnClickListener
 {
@@ -54,15 +48,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener
 
 
 
-    private RecyclerView productsRecyclerView, categoryRecyclerView;
-    private RecyclerView.Adapter adapter, categoryAdapter;
-    private RecyclerView.LayoutManager manager, categoryManager;
+    private RecyclerView productsRecyclerView, categoryRecyclerView, breakfastRecyclerView;
+    private RecyclerView.Adapter productsAdapter, categoryAdapter, breakfastAdapter;
+    private RecyclerView.LayoutManager productsManager, categoryManager, breakfastManager;
     private TextView errorView,categoryShowAll;
     private ImageSlider imageSlider;
 
 
 
-    private List<Products> products;
+    private List<Products> products, breakfastProducts;
     private List<Category> categories;
 
 
@@ -106,6 +100,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener
         categoryRecyclerView = rootView.findViewById(R.id.category_recyclerview);
         errorView = rootView.findViewById(R.id.internet_error);
         categoryShowAll = rootView.findViewById(R.id.category_show_all);
+        breakfastRecyclerView = rootView.findViewById(R.id.breakfast_recyclerview);
 
 
 
@@ -126,13 +121,22 @@ public class HomeFragment extends Fragment implements View.OnClickListener
         bannerView.startAutoCycle();
 
         productsRecyclerView.setHasFixedSize(true);
-        categoryRecyclerView.setHasFixedSize(true);
         productsRecyclerView.setNestedScrollingEnabled(false);
+
+        categoryRecyclerView.setHasFixedSize(true);
         categoryRecyclerView.setNestedScrollingEnabled(false);
-        manager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
+
+        breakfastRecyclerView.setHasFixedSize(true);
+        breakfastRecyclerView.setNestedScrollingEnabled(false);
+
+        productsManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
         categoryManager = new GridLayoutManager(getContext(),5);
-        productsRecyclerView.setLayoutManager(manager);
+        breakfastManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
+
+
+        productsRecyclerView.setLayoutManager(productsManager);
         categoryRecyclerView.setLayoutManager(categoryManager);
+        breakfastRecyclerView.setLayoutManager(breakfastManager);
 
 
         if (CheckInternetConnection.isConnectionAvailable(getContext()))
@@ -143,7 +147,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener
             }
             loadSliderData();
             loadBannerData();
-            loadData();
+            loadAllProductData();
+            loadCategoryData();
+            loadBreakfastData();
         } else
         {
             errorView.setVisibility(View.VISIBLE);
@@ -153,13 +159,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener
 
         return rootView;
     }
-
-
-
-
-
-
-
 
 
 
@@ -186,9 +185,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener
             }
         });
     }
-
-
-
     private void loadSliderData()
     {
         ArabianPureApi arabianPureApi = APIinstance.retroInstace().create(ArabianPureApi.class);
@@ -213,40 +209,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener
             }
         });
     }
-
-
-    private void loadData()
+    private void loadCategoryData()
     {
-
         ArabianPureApi arabianPureApi = APIinstance.retroInstace().create(ArabianPureApi.class);
-        Call<List<Products>> call = arabianPureApi.getProducts();
         Call<List<Category>> categoryCall = arabianPureApi.getCategory();
-        call.enqueue(new Callback<List<Products>>() {
-            @Override
-            public void onResponse(@NotNull Call<List<Products>> call, @NotNull Response<List<Products>> response)
-            {
-                if (!response.isSuccessful())
-                {
-                    Toast.makeText(getContext(), response.code(), Toast.LENGTH_LONG).show();
-                    return;
-                }
-                products = response.body();
-                if (products!=null)
-                {
-                    adapter = new ProductsAdapter(products, getContext(), (ProductsAdapter.productClickListener) getContext()
-                    );
-                    productsRecyclerView.setAdapter(adapter);
-                }
-
-            }
-
-            @Override
-            public void onFailure(@NotNull Call<List<Products>> call, @NotNull Throwable t)
-            {
-                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
         categoryCall.enqueue(new Callback<List<Category>>() {
             @Override
             public void onResponse(@NotNull Call<List<Category>> call, @NotNull Response<List<Category>> response)
@@ -267,7 +233,66 @@ public class HomeFragment extends Fragment implements View.OnClickListener
 
             }
         });
+    }
+    private void loadAllProductData()
+    {
 
+        ArabianPureApi arabianPureApi = APIinstance.retroInstace().create(ArabianPureApi.class);
+        Call<List<Products>> call = arabianPureApi.getProducts();
+        call.enqueue(new Callback<List<Products>>() {
+            @Override
+            public void onResponse(@NotNull Call<List<Products>> call, @NotNull Response<List<Products>> response)
+            {
+                if (!response.isSuccessful())
+                {
+                    Toast.makeText(getContext(), response.code(), Toast.LENGTH_LONG).show();
+                    return;
+                }
+                products = response.body();
+                if (products!=null)
+                {
+                    productsAdapter = new ProductsAdapter(products, getContext(), (ProductsAdapter.productClickListener) getContext()
+                    );
+                    productsRecyclerView.setAdapter(productsAdapter);
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<List<Products>> call, @NotNull Throwable t)
+            {
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+    }
+    private void loadBreakfastData()
+    {
+        ArabianPureApi arabianPureApi = APIinstance.retroInstace().create(ArabianPureApi.class);
+        Call<List<Products>> call = arabianPureApi.getSpecificCategoryProducts(41);
+        call.enqueue(new Callback<List<Products>>() {
+            @Override
+            public void onResponse(@NotNull Call<List<Products>> call, @NotNull Response<List<Products>> response)
+            {
+                if (response.isSuccessful())
+                {
+                    breakfastProducts = response.body();
+                    if (breakfastProducts!=null)
+                    {
+                        breakfastAdapter = new ProductsAdapter(breakfastProducts, getContext(), (ProductsAdapter.productClickListener) getContext());
+                        breakfastRecyclerView.setAdapter(breakfastAdapter);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<List<Products>> call, @NotNull Throwable t)
+            {
+
+            }
+        });
     }
 
 

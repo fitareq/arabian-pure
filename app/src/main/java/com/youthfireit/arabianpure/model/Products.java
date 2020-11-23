@@ -28,6 +28,15 @@ public class Products
     private String created_at;
     private String updated_at;
     private String image;
+    private String attribute_options;
+
+    public String getAttribute_options() {
+        return attribute_options;
+    }
+
+    public void setAttribute_options(String attribute_options) {
+        this.attribute_options = attribute_options;
+    }
 
     public void setId(String id) {
         this.id = id;

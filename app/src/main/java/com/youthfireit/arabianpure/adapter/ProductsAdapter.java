@@ -17,7 +17,10 @@ import com.youthfireit.arabianpure.R;
 import com.youthfireit.arabianpure.activity.SingleProductActivity;
 import com.youthfireit.arabianpure.model.Products;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHolder>
 {
@@ -46,8 +49,16 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
         String title = values.get(position).getTitle();
         String price = values.get(position).getPrice();
         String offerprice = values.get(position).getOffer_price();
+        String att = values.get(position).getAttribute_options();
+        List<String> list = new ArrayList<String>();
+        Matcher m = Pattern.compile("(\".+?\")").matcher(att);
+        while (m.find())
+            list.add(m.group(1).replace("\"","").replace(" ",""));
+        att = list.get(0)+list.get(1);
+        list.remove(0);
+
         Picasso.get().load(image).fit().into(holder.imageView);
-        holder.title.setText(title);
+        holder.title.setText(att);
         if (offerprice==null)
         {
             if (price==null)

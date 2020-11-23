@@ -20,7 +20,7 @@ public interface ArabianPureApi
     @GET("products")
     Call<List<Products>> getProducts();
     @GET("product/{slug}")
-    Call<List<Products>> getSingleProduct(@Path("slug") String slug);
+    Call<Products> getSingleProduct(@Path("slug") String slug);
     @GET("categoryAll")
     Call<List<Category>> getCategory();
     @GET("slider")
@@ -28,7 +28,7 @@ public interface ArabianPureApi
     @GET("banner")
     Call<List<HomepageBanner>> getBanner();
     @GET("category/all/products/{category_id}")
-    Call<List<Products>> getSpecificCategory(@Path("category_id") int categoryId);
+    Call<List<Products>> getSpecificCategoryProducts(@Path("category_id") int categoryId);
     @POST("register")
     Call<Register> registerUser(@Body Register register);
     @POST("login")

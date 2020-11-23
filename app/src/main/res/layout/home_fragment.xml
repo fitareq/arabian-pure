@@ -107,6 +107,24 @@
 
 
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/breakfast"
+                    android:textSize="@dimen/_16sdp"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="5dp"/>
+
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/breakfast_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    />
+
+
 
 
                 <TextView
@@ -131,6 +149,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                 />
+
+
 
 
 
