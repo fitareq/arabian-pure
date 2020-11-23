@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 import com.youthfireit.arabianpure.R;
 import com.youthfireit.arabianpure.model.Products;
@@ -34,11 +35,13 @@ public class SingleProductActivity extends AppCompatActivity {
     Toolbar toolbar;
     private Products productsList;
     private String slug;
+    FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_product);
 
+        mAuth = FirebaseAuth.getInstance();
 
         String image = getIntent().getStringExtra("image");
         slug = getIntent().getStringExtra("slug");
@@ -47,7 +50,7 @@ public class SingleProductActivity extends AppCompatActivity {
         String quantity = getIntent().getStringExtra("quantity");
         String sku = getIntent().getStringExtra("sku");*/
         toolbar = findViewById(R.id.single_product_toolbar);
-        imageView = findViewById(R.id.single_product_image_view);
+        //imageView = findViewById(R.id.single_product_image_view);
         textView = findViewById(R.id.single_product_title);
         productStock = findViewById(R.id.single_product_stock);
         addToWishlist = findViewById(R.id.single_product_wishlist);

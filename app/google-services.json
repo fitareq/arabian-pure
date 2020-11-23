@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "25496678453",
+    "firebase_url": "https://arabian-pure.firebaseio.com",
+    "project_id": "arabian-pure",
+    "storage_bucket": "arabian-pure.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:25496678453:android:cde9bebad1d1ad13d5c17c",
+        "android_client_info": {
+          "package_name": "com.youthfireit.arabianpure"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "25496678453-5qn97tvpdq8iuam7smj2g70oremehuh5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.youthfireit.arabianpure",
+            "certificate_hash": "285c9d003218114506ff910c52d990812e4c3963"
+          }
+        },
+        {
+          "client_id": "25496678453-t6jngsimqt34h4hj4pgntn2k3579650v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHityBLkGA6JQKIasOFA1rkLnlmEU7V1w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "25496678453-t6jngsimqt34h4hj4pgntn2k3579650v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
