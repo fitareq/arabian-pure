@@ -13,10 +13,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.denzcoskun.imageslider.ImageSlider;
+
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
@@ -34,8 +35,6 @@ import com.youthfireit.arabianpure.model.HomepageSlider;
 import com.youthfireit.arabianpure.model.Products;
 import com.youthfireit.arabianpure.adapter.SliderAdapter;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.List;
 
 import retrofit2.Call;
@@ -52,7 +51,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener
     private RecyclerView.Adapter productsAdapter, categoryAdapter, breakfastAdapter;
     private RecyclerView.LayoutManager productsManager, categoryManager, breakfastManager;
     private TextView errorView,categoryShowAll;
-    private ImageSlider imageSlider;
 
 
 
@@ -134,6 +132,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener
         breakfastManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
 
 
+
         productsRecyclerView.setLayoutManager(productsManager);
         categoryRecyclerView.setLayoutManager(categoryManager);
         breakfastRecyclerView.setLayoutManager(breakfastManager);
@@ -169,7 +168,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener
         Call<List<HomepageBanner>> call = arabianPureApi.getBanner();
         call.enqueue(new Callback<List<HomepageBanner>>() {
             @Override
-            public void onResponse(@NotNull Call<List<HomepageBanner>> call, @NotNull Response<List<HomepageBanner>> response)
+            public void onResponse( Call<List<HomepageBanner>> call,  Response<List<HomepageBanner>> response)
             {
                 homepageBannerList = response.body();
                 if (homepageBannerList!=null)
@@ -180,7 +179,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener
             }
 
             @Override
-            public void onFailure(@NotNull Call<List<HomepageBanner>> call, @NotNull Throwable t) {
+            public void onFailure( Call<List<HomepageBanner>> call,  Throwable t) {
 
             }
         });
@@ -193,7 +192,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener
 
         call.enqueue(new Callback<List<HomepageSlider>>() {
             @Override
-            public void onResponse(@NotNull Call<List<HomepageSlider>> call, @NotNull Response<List<HomepageSlider>> response)
+            public void onResponse( Call<List<HomepageSlider>> call,  Response<List<HomepageSlider>> response)
             {
                 homepageSliderList = response.body();
                 if (homepageSliderList !=null) {
@@ -203,7 +202,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener
             }
 
             @Override
-            public void onFailure(@NotNull Call<List<HomepageSlider>> call, @NotNull Throwable t)
+            public void onFailure( Call<List<HomepageSlider>> call,  Throwable t)
             {
 
             }
@@ -215,7 +214,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener
         Call<List<Category>> categoryCall = arabianPureApi.getCategory();
         categoryCall.enqueue(new Callback<List<Category>>() {
             @Override
-            public void onResponse(@NotNull Call<List<Category>> call, @NotNull Response<List<Category>> response)
+            public void onResponse( Call<List<Category>> call,  Response<List<Category>> response)
             {
                 if (!response.isSuccessful())
                 {
@@ -229,7 +228,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener
             }
 
             @Override
-            public void onFailure(@NotNull Call<List<Category>> call, @NotNull Throwable t) {
+            public void onFailure( Call<List<Category>> call,  Throwable t) {
 
             }
         });
@@ -241,7 +240,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener
         Call<List<Products>> call = arabianPureApi.getProducts();
         call.enqueue(new Callback<List<Products>>() {
             @Override
-            public void onResponse(@NotNull Call<List<Products>> call, @NotNull Response<List<Products>> response)
+            public void onResponse( Call<List<Products>> call,  Response<List<Products>> response)
             {
                 if (!response.isSuccessful())
                 {
@@ -259,7 +258,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener
             }
 
             @Override
-            public void onFailure(@NotNull Call<List<Products>> call, @NotNull Throwable t)
+            public void onFailure( Call<List<Products>> call,  Throwable t)
             {
                 Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
@@ -274,7 +273,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener
         Call<List<Products>> call = arabianPureApi.getSpecificCategoryProducts(41);
         call.enqueue(new Callback<List<Products>>() {
             @Override
-            public void onResponse(@NotNull Call<List<Products>> call, @NotNull Response<List<Products>> response)
+            public void onResponse( Call<List<Products>> call,  Response<List<Products>> response)
             {
                 if (response.isSuccessful())
                 {
@@ -288,7 +287,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener
             }
 
             @Override
-            public void onFailure(@NotNull Call<List<Products>> call, @NotNull Throwable t)
+            public void onFailure( Call<List<Products>> call,  Throwable t)
             {
 
             }

@@ -1,28 +1,29 @@
 package com.youthfireit.arabianpure.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
 import com.youthfireit.arabianpure.R;
 import com.youthfireit.arabianpure.model.Login;
 import com.youthfireit.arabianpure.network.APIinstance;
 import com.youthfireit.arabianpure.network.ArabianPureApi;
 
-import org.jetbrains.annotations.NotNull;
+
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,15 +33,18 @@ public class LoginActivity extends AppCompatActivity {
 
     /*http://arabianpure.com/public/api/products*/
     private TextInputEditText userPhone, userPassword;
+    private TextInputLayout phone,password;
     private Button btnLogin;
     private TextView forgotPassword, register;
     private CheckBox rememberMe;
     private Toolbar loginToolbar;
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        mAuth = FirebaseAuth.getInstance();
 
         //initializing view
         initilize();
@@ -65,6 +69,9 @@ public class LoginActivity extends AppCompatActivity {
                 userLogin();
             }
         });
+
+
+
     }
 
     private void userLogin()
@@ -92,20 +99,21 @@ public class LoginActivity extends AppCompatActivity {
             Call<Login> call = arabianPureApi.loginUser(login);
             call.enqueue(new Callback<Login>() {
                 @Override
-                public void onResponse(@NotNull Call<Login> call, @NotNull Response<Login> response)
+                public void onResponse(Call<Login> call,  Response<Login> response)
                 {
                     if (!response.isSuccessful())
                     {
                         customToastShow("Phone Number or Password isn't Valid",0);
                         //Toast.makeText(LoginActivity.this, response.message(), Toast.LENGTH_SHORT).show();
 
-                    }else
-                    /*if (response.body().getStatus_code().equals("201"))
-                    {*/ {
-                        //Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                    }else if (response.code()==201)
+                    {
                         customToastShow("Login Successful",1);
+                        String n = number+"@site.com";
+                        mAuth.signInWithEmailAndPassword(n,pass);
                         goToHomePage();
                     }
+
 
                 }
 
@@ -170,6 +178,8 @@ public class LoginActivity extends AppCompatActivity {
         forgotPassword = findViewById(R.id.login_forgot_password);
         register = findViewById(R.id.login_register_textview);
         loginToolbar = findViewById(R.id.login_toolbar);
+        phone = findViewById(R.id.phone_textfield);
+        password = findViewById(R.id.password_textfield);
 
     }
 }

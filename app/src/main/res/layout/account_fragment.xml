@@ -6,29 +6,20 @@
     android:padding="10dp"
     >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_100sdp"
-        />
 
-    <ImageButton
+
+    <ImageView
         android:id="@+id/accountfragment_cross_imageview"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/_25sdp"
+        android:layout_height="@dimen/_25sdp"
         android:layout_alignParentTop="true"
-        android:src="@drawable/ic_arrow_back_white"
-        android:background="@drawable/account_back2"
-        android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:src="@drawable/ic_baseline_clear_24"
         />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:orientation="vertical"
-        android:layout_centerInParent="true"
-        android:gravity="center"
         android:padding="10dp"
         >
         <com.google.android.material.button.MaterialButton

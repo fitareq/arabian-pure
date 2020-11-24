@@ -37,23 +37,19 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
     implementation 'com.squareup.picasso:picasso:2.71828'
-    implementation 'androidx.fragment:fragment:1.2.5'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.1'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.3.1'
-    implementation 'org.jsoup:jsoup:1.11.1'
-
-
-    /*implementation 'com.androidx.support:cardview-v7:28.1.0'*/
-    /*implementation 'com.androidx.support:recyclerview-v7:28.1.0'*/
+    //implementation 'androidx.fragment:fragment:1.2.5'
+    //implementation 'androidx.navigation:navigation-fragment-ktx:2.3.1'
+    //implementation 'androidx.navigation:navigation-ui-ktx:2.3.1'
+    implementation platform('com.google.firebase:firebase-bom:26.1.0')
     implementation 'com.squareup.picasso:picasso:2.71828'
 
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
 
-    implementation 'com.github.denzcoskun:ImageSlideshow:0.0.6'
     implementation 'com.github.smarteist:autoimageslider:1.4.0'
-    implementation 'com.google.firebase:firebase-auth:20.0.0'
+    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.firebase:firebase-database'
 
 
     testImplementation 'junit:junit:4.13.1'

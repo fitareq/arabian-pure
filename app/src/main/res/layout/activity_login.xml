@@ -47,6 +47,7 @@
 
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/phone_textfield"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/phone_number"
@@ -54,6 +55,7 @@
                     android:layout_marginTop="10dp"
                     app:errorEnabled="true"
                     app:errorTextColor="@color/red"
+                    app:helperTextEnabled="true"
                     >
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/login_phone_number"
@@ -69,7 +71,9 @@
 
 
 
+
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/password_textfield"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/password"
@@ -78,13 +82,15 @@
                     android:layout_marginTop="10dp"
                     app:errorEnabled="true"
                     app:errorTextColor="@color/red"
+                    app:helperTextEnabled="true"
                     >
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/login_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
-                        android:imeOptions="actionDone"/>
+                        android:imeOptions="actionDone"
+                        />
                 </com.google.android.material.textfield.TextInputLayout>
 
 

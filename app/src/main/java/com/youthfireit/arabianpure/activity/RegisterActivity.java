@@ -1,5 +1,6 @@
 package com.youthfireit.arabianpure.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -11,13 +12,17 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.youthfireit.arabianpure.R;
 import com.youthfireit.arabianpure.model.Register;
 import com.youthfireit.arabianpure.network.APIinstance;
 import com.youthfireit.arabianpure.network.ArabianPureApi;
-
-import org.jetbrains.annotations.NotNull;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,11 +33,20 @@ public class RegisterActivity extends AppCompatActivity {
     private Toolbar registerToolbar;
     private Button registerButton;
     private TextView textViewLogin;
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase database;
+    private DatabaseReference reference;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+        reference = database.getReference().child("users");
 
         initialize();
 
@@ -98,19 +112,28 @@ public class RegisterActivity extends AppCompatActivity {
             Call<Register> call = arabianPureApi.registerUser(register);
             call.enqueue(new Callback<Register>() {
                 @Override
-                public void onResponse(@NotNull Call<Register> call, @NotNull Response<Register> response) {
+                public void onResponse( Call<Register> call,  Response<Register> response) {
                     if (!response.isSuccessful()) {
                         Toast.makeText(RegisterActivity.this, response.message(), Toast.LENGTH_SHORT).show();
                     }
-                    else
+                    else if (response.code()==201)
                     {
+                        String n = phone_number+"@site.com";
                         Toast.makeText(RegisterActivity.this, "registration successful", Toast.LENGTH_SHORT).show();
+                        mAuth.createUserWithEmailAndPassword(n,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task)
+                            {
+                                reference.child(mAuth.getUid()).setValue(register);
+                            }
+                        });
+
                         goToLoginPage();
                     }
                 }
 
                 @Override
-                public void onFailure(@NotNull Call<Register> call, @NotNull Throwable t)
+                public void onFailure( Call<Register> call, Throwable t)
                 {
 
                 }

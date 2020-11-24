@@ -5,7 +5,6 @@ public class Register {
     private String email;
     private String password;
     private String phone_number;
-    private String status_code;
 
 
 
@@ -16,9 +15,7 @@ public class Register {
         this.phone_number = phone_number;
     }
 
-    public String getStatus_code() {
-        return status_code;
-    }
+
     public String getName() {
         return name;
     }
