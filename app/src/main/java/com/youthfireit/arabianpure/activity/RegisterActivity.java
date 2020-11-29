@@ -33,9 +33,9 @@ public class RegisterActivity extends AppCompatActivity {
     private Toolbar registerToolbar;
     private Button registerButton;
     private TextView textViewLogin;
-    private FirebaseAuth mAuth;
+   /* private FirebaseAuth mAuth;
     private FirebaseDatabase database;
-    private DatabaseReference reference;
+    private DatabaseReference reference;*/
 
 
 
@@ -44,9 +44,9 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        mAuth = FirebaseAuth.getInstance();
+        /*mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
-        reference = database.getReference().child("users");
+        reference = database.getReference().child("users");*/
 
         initialize();
 
@@ -118,7 +118,7 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                     else if (response.code()==201)
                     {
-                        String n = phone_number+"@site.com";
+                        /*String n = phone_number+"@site.com";
                         Toast.makeText(RegisterActivity.this, "registration successful", Toast.LENGTH_SHORT).show();
                         mAuth.createUserWithEmailAndPassword(n,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
@@ -126,7 +126,7 @@ public class RegisterActivity extends AppCompatActivity {
                             {
                                 reference.child(mAuth.getUid()).setValue(register);
                             }
-                        });
+                        });*/
 
                         goToLoginPage();
                     }

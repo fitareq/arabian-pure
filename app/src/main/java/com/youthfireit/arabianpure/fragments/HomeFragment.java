@@ -184,6 +184,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener
             }
         });
     }
+
     private void loadSliderData()
     {
         ArabianPureApi arabianPureApi = APIinstance.retroInstace().create(ArabianPureApi.class);
@@ -223,7 +224,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener
                 }
                 categories = response.body();
                 homeFragmentListener.onShowAllClick(categories,false);
-                categoryAdapter = new CategoryAdapter(categories,10);
+                categoryAdapter = new CategoryAdapter(categories,10, (CategoryAdapter.categoryClickListener) getContext());
                 categoryRecyclerView.setAdapter(categoryAdapter);
             }
 
@@ -270,7 +271,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener
     private void loadBreakfastData()
     {
         ArabianPureApi arabianPureApi = APIinstance.retroInstace().create(ArabianPureApi.class);
-        Call<List<Products>> call = arabianPureApi.getSpecificCategoryProducts(41);
+        Call<List<Products>> call = arabianPureApi.getSpecificCategoryProducts("41");
         call.enqueue(new Callback<List<Products>>() {
             @Override
             public void onResponse( Call<List<Products>> call,  Response<List<Products>> response)

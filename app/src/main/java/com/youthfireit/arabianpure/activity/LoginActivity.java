@@ -17,7 +17,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.auth.FirebaseAuth;
 import com.youthfireit.arabianpure.R;
 import com.youthfireit.arabianpure.model.Login;
 import com.youthfireit.arabianpure.network.APIinstance;
@@ -38,16 +37,18 @@ public class LoginActivity extends AppCompatActivity {
     private TextView forgotPassword, register;
     private CheckBox rememberMe;
     private Toolbar loginToolbar;
-    private FirebaseAuth mAuth;
+    /*private FirebaseAuth mAuth;
+    private DatabaseReference reference;*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mAuth = FirebaseAuth.getInstance();
+        /*mAuth = FirebaseAuth.getInstance();
+        reference = FirebaseDatabase.getInstance().getReference().child("user");*/
 
         //initializing view
-        initilize();
+        initialize();
         setSupportActionBar(loginToolbar);
 
         loginToolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -80,18 +81,13 @@ public class LoginActivity extends AppCompatActivity {
         String pass = userPassword.getText().toString();
         if (TextUtils.isEmpty(number))
         {
-            //Toast.makeText(this, "enter a phone number", Toast.LENGTH_SHORT).show();
-            //customToastShow("Enter a Valid Phone",0);
             userPhone.setError("Enter a Valid Phone");
         }else if (TextUtils.isEmpty(pass))
         {
-            //Toast.makeText(this, "enter a password", Toast.LENGTH_SHORT).show();
-            //customToastShow("Enter a Valid Password",0);
             userPassword.setError("Enter a Valid Password");
         }else if (pass.length()<8)
         {
             userPassword.setError("Password Must be At Least 8 Digits");
-            //customToastShow("Password Must be At Least 8 Digits",0);
         }else
         {
             Login login = new Login(number,pass);
@@ -101,29 +97,62 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<Login> call,  Response<Login> response)
                 {
-                    if (!response.isSuccessful())
-                    {
-                        customToastShow("Phone Number or Password isn't Valid",0);
-                        //Toast.makeText(LoginActivity.this, response.message(), Toast.LENGTH_SHORT).show();
-
-                    }else if (response.code()==201)
+                    if (response.code()==201)
                     {
                         customToastShow("Login Successful",1);
-                        String n = number+"@site.com";
-                        mAuth.signInWithEmailAndPassword(n,pass);
                         goToHomePage();
-                    }
-
-
+                    }else
+                        {
+                            customToastShow("Phone Number or Password isn't Valid", 0);
+                        }
                 }
 
                 @Override
-                public void onFailure(Call<Login> call, Throwable t) {
-
+                public void onFailure(Call<Login> call, Throwable t)
+                {
+                    customToastShow("Phone Number or Password isn't Valid", 0);
                 }
             });
         }
     }
+
+    /*private void saveNewUserToFirebaseDatabase(String id)
+    {
+        customToastShow("saveNewUserToFirebaseDatabase",1);
+        int uId = Integer.parseInt(id);
+        reference.child(mAuth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                if (!snapshot.exists())
+                {
+                    customToastShow("true",1);
+                    ArabianPureApi arabianPureApi = APIinstance.retroInstace().create(ArabianPureApi.class);
+                    Call<Register> call = arabianPureApi.getUserInfo(uId);
+                    call.enqueue(new Callback<Register>() {
+                        @Override
+                        public void onResponse(Call<Register> call, Response<Register> response) {
+                            if (response.isSuccessful())
+                            {
+                                reference.child(mAuth.getUid()).setValue(response.body());
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Register> call, Throwable t) {
+
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }*/
 
     private void customToastShow(String message, int a)
     {
@@ -142,7 +171,7 @@ public class LoginActivity extends AppCompatActivity {
         textView.setText(message);
         Toast toast = new Toast(getApplicationContext());
         toast.setGravity(Gravity.BOTTOM,0,100);
-        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(layout);
         toast.show();
     }
@@ -169,7 +198,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void initilize()
+    private void initialize()
 
     {
         userPhone = findViewById(R.id.login_phone_number);

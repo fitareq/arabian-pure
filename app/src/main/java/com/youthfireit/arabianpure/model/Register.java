@@ -5,7 +5,11 @@ public class Register {
     private String email;
     private String password;
     private String phone_number;
-
+    private String address;
+    private String delivery_phone;
+    private String delivery_address;
+    private String city_id;
+    private String gender;
 
 
     public Register(String name, String email, String password, String phone_number) {
@@ -14,6 +18,47 @@ public class Register {
         this.password = password;
         this.phone_number = phone_number;
     }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getDelivery_phone() {
+        return delivery_phone;
+    }
+
+    public void setDelivery_phone(String delivery_phone) {
+        this.delivery_phone = delivery_phone;
+    }
+
+    public String getDelivery_address() {
+        return delivery_address;
+    }
+
+    public void setDelivery_address(String delivery_address) {
+        this.delivery_address = delivery_address;
+    }
+
+    public String getCity_id() {
+        return city_id;
+    }
+
+    public void setCity_id(String city_id) {
+        this.city_id = city_id;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
 
 
     public String getName() {

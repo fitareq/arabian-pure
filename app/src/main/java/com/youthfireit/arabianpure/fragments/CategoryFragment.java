@@ -41,7 +41,7 @@ public class CategoryFragment extends Fragment
         allCategory.setNestedScrollingEnabled(false);
         manager = new GridLayoutManager(getContext(),2);
         allCategory.setLayoutManager(manager);
-        adapter = new CategoryAdapter(categories,categories.size());
+        adapter = new CategoryAdapter(categories,categories.size(), (CategoryAdapter.categoryClickListener) getContext());
         allCategory.setAdapter(adapter);
 
         return rootView;

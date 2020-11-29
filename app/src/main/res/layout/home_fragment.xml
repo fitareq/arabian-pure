@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/gray"
     android:padding="2dp"
     >
 
@@ -54,6 +53,7 @@
                 </androidx.cardview.widget.CardView>
 
 
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -86,7 +86,12 @@
 
 
 
-
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"
+                    android:padding="5dp"
+                    android:layout_marginTop="10dp"/>
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/category_recyclerview"
                     android:layout_width="match_parent"
@@ -106,7 +111,12 @@
 
 
 
-
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"
+                    android:padding="5dp"
+                    android:layout_marginTop="10dp"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -115,7 +125,12 @@
                     android:textColor="@color/black"
                     android:layout_marginTop="5dp"/>
 
-
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"
+                    android:padding="5dp"
+                    android:layout_marginTop="10dp"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/breakfast_recyclerview"
@@ -126,7 +141,12 @@
                     />
 
 
-
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"
+                    android:padding="5dp"
+                    android:layout_marginTop="10dp"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -137,7 +157,12 @@
                     android:gravity="center"
                     android:layout_marginTop="5dp"/>
 
-
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"
+                    android:padding="5dp"
+                    android:layout_marginTop="10dp"/>
 
 
 

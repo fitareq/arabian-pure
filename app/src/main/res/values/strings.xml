@@ -6,6 +6,7 @@
     <string name="password">Password</string>
     <string name="remember_me">Remember Me</string>
     <string name="login">Login</string>
+    <string name="l_or_r">Login / Register</string>
     <string name="forgot_your_password">Forgot Your Password?</string>
     <string name="don_t_have_a_account">Don\'t have a account?</string>
     <string name="register">Register</string>
@@ -13,7 +14,7 @@
     <string name="email">Email</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="already_have_account">Already have account?</string>
-    <string name="send_password_rest_link">Send password rest link</string>
+    <string name="send_password_rest_link">Send password reset link</string>
     <string name="products">products</string>
     <string name="category_image">category image</string>
     <string name="category_title">Category title</string>
@@ -30,4 +31,5 @@
     <string name="add_to_cart">Add to cart</string>
     <string name="notification">Notification</string>
     <string name="breakfast">Breakfast</string>
+    <string name="price">Price</string>
 </resources>

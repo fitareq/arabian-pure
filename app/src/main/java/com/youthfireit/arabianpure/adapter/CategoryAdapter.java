@@ -19,11 +19,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 {
     private final List<Category> categories;
     private final int listSize;
+    categoryClickListener categoryListener;
 
-    public CategoryAdapter(List<Category> categories, int lSize)
+    public CategoryAdapter(List<Category> categories, int lSize, categoryClickListener categoryListener)
     {
         this.categories = categories;
         this.listSize = lSize;
+        this.categoryListener = categoryListener;
     }
 
     @NonNull
@@ -55,7 +57,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
 
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView categoryTitle;
         public ImageView categoryImage;
@@ -64,11 +66,32 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
             super(itemView);
             categoryTitle = itemView.findViewById(R.id.category_title);
             categoryImage = itemView.findViewById(R.id.category_image);
+
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v)
+                {
+                    String id = categories.get(getAdapterPosition()).getId();
+                    String title = categories.get(getAdapterPosition()).getName();
+                    categoryListener.onCategoryClickListener(id,title);
+                }
+            });
+
+
+
         }
+
+
+
+
     }
 
 
-
+public interface categoryClickListener
+{
+    void onCategoryClickListener(String id, String title);
+}
 
 
 }

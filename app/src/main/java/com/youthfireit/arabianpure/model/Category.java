@@ -2,7 +2,7 @@ package com.youthfireit.arabianpure.model;
 
 public class Category
 {
-    private int id;
+    private String id;
     private String name;
     private String name_bd;
     private String description;
@@ -14,7 +14,8 @@ public class Category
     private String updated_at;
 
 
-    public int getId() {
+
+    public String getId() {
         return id;
     }
 

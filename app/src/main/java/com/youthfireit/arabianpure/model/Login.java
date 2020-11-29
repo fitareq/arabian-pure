@@ -3,10 +3,14 @@ package com.youthfireit.arabianpure.model;
 public class Login {
     private String phone_number;
     private String password;
-    private String status_code;
+    private String loggedinId;
 
-    public String getStatus_code() {
-        return status_code;
+    public String getLoggedinId() {
+        return loggedinId;
+    }
+
+    public void setLoggedinId(String loggedinId) {
+        this.loggedinId = loggedinId;
     }
 
     public Login(String phone_number, String password) {

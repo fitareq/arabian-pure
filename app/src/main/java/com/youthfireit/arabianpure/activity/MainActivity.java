@@ -21,6 +21,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.youthfireit.arabianpure.R;
+import com.youthfireit.arabianpure.adapter.CategoryAdapter;
 import com.youthfireit.arabianpure.adapter.ProductsAdapter;
 import com.youthfireit.arabianpure.fragments.AccountFragment;
 import com.youthfireit.arabianpure.fragments.CartFragment;
@@ -30,7 +31,7 @@ import com.youthfireit.arabianpure.model.Category;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, HomeFragment.HomeFragmentListener, ProductsAdapter.productClickListener {
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, HomeFragment.HomeFragmentListener, ProductsAdapter.productClickListener, CategoryAdapter.categoryClickListener {
 
     Toolbar toolbar;
     private BottomNavigationView bottomNavigationView;
@@ -132,17 +133,22 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
 
     @Override
-    public void onProductClickListener(String image, String slug, String title, String description, String quantity, String sku)
+    public void onProductClickListener(String id, String slug)
     {
         Intent intent = new Intent(MainActivity.this,SingleProductActivity.class);
-        intent.putExtra("image",image);
+        intent.putExtra("id",id);
         intent.putExtra("slug",slug);
-        intent.putExtra("title",title);
-        intent.putExtra("description",description);
-        intent.putExtra("quantity",quantity);
-        intent.putExtra("sku",sku);
 
         startActivity(intent);
 
+    }
+
+    @Override
+    public void onCategoryClickListener(String id, String title)
+    {
+        Intent intent = new Intent(MainActivity.this, CategoryProductsActivity.class);
+        intent.putExtra("id",id);
+        intent.putExtra("title",title);
+        startActivity(intent);
     }
 }

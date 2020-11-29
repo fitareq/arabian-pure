@@ -26,30 +26,93 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp">
+            android:orientation="vertical">
 
 
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_150sdp"
-                app:cardCornerRadius="10dp">
+                android:layout_height="wrap_content">
                 <com.smarteist.autoimageslider.SliderView
                     android:id="@+id/single_product_image_slider"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="@dimen/_200sdp"
+                    android:layout_height="@dimen/_200sdp"
+                    android:layout_gravity="center"
                     />
             </androidx.cardview.widget.CardView>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:layout_marginTop="10dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/single_product_offer_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/_16sdp"
+                        android:text="@string/price"
+                        android:textColor="@color/black"
+                        android:visibility="gone"/>
+                    <TextView
+                        android:id="@+id/single_product_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/_16sdp"
+                        android:text="@string/price"
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/single_product_wishlist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_14sdp"
+                    android:text="@string/wishlist"
+                    app:drawableLeftCompat="@drawable/ic_baseline_favorite_border_24"
+                    app:drawableStartCompat="@drawable/ic_baseline_favorite_border_24"
+                    android:visibility="visible"
+                    android:textColor="@color/black"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+                <TextView
+                    android:id="@+id/single_product_wishlisted"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_14sdp"
+                    android:text="@string/wishlist"
+                    app:drawableLeftCompat="@drawable/ic_baseline_favorite_24"
+                    app:drawableStartCompat="@drawable/ic_baseline_favorite_24"
+                    android:visibility="gone"
+                    android:textColor="@color/black"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"/>
 
             <TextView
                 android:id="@+id/single_product_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/_16sdp"
+                android:textSize="@dimen/_14sdp"
                 android:text="@string/title"
                 android:textColor="@color/black"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp"
+                android:padding="5dp"/>
             <TextView
                 android:id="@+id/single_product_stock"
                 android:layout_width="match_parent"
@@ -57,37 +120,18 @@
                 android:text="@string/available"
                 android:textSize="@dimen/_14sdp"
                 android:textColor="@color/black"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp"
+                android:padding="5dp"/>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/gray"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp"
+                android:padding="5dp"/>
 
-            <TextView
-                android:id="@+id/single_product_wishlist"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/_14sdp"
-                android:text="@string/wishlist"
-                android:layout_marginTop="10dp"
-                app:drawableLeftCompat="@drawable/ic_baseline_favorite_border_24"
-                app:drawableStartCompat="@drawable/ic_baseline_favorite_border_24"
-                android:visibility="visible"
-                android:textColor="@color/black"/>
-            <TextView
-                android:id="@+id/single_product_wishlisted"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/_14sdp"
-                android:text="@string/wishlist"
-                android:layout_marginTop="10dp"
-                app:drawableLeftCompat="@drawable/ic_baseline_favorite_24"
-                app:drawableStartCompat="@drawable/ic_baseline_favorite_24"
-                android:visibility="gone"
-                android:textColor="@color/black"
-                />
+
+
             <TextView
                 android:id="@+id/single_product_description"
                 android:layout_width="match_parent"
@@ -95,7 +139,9 @@
                 android:textSize="@dimen/_14sdp"
                 android:text="@string/description"
                 android:textColor="@color/black"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                />
 
 
 
@@ -107,14 +153,16 @@
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:text="@string/sku"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp"
+                android:padding="5dp"/>
 
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/gray"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp"
+                android:padding="5dp"/>
 
 
 
@@ -125,13 +173,15 @@
                 android:textSize="@dimen/_14sdp"
                 android:textColor="@color/black"
                 android:text="@string/quantity"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp"
+                android:padding="5dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="5dp">
+                android:layout_marginTop="5dp"
+                android:padding="5dp">
                 <TextView
                     android:id="@+id/single_product_quantity"
                     android:layout_width="wrap_content"
@@ -157,16 +207,14 @@
                     android:layout_marginLeft="@dimen/_10sdp"
                     />
             </LinearLayout>
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/add_to_cart"
-                android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:layout_marginTop="10dp"
                 android:layout_gravity="bottom|end"
-                android:textSize="@dimen/_16sdp"/>
+                android:layout_margin="5dp"/>
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

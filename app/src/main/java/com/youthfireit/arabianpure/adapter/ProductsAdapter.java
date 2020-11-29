@@ -50,26 +50,19 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
         String price = values.get(position).getPrice();
         String offerprice = values.get(position).getOffer_price();
         String att = values.get(position).getAttribute_options();
+        String attr_name;
         List<String> list = new ArrayList<String>();
         Matcher m = Pattern.compile("(\".+?\")").matcher(att);
         while (m.find())
             list.add(m.group(1).replace("\"","").replace(" ",""));
-        att = list.get(0)+list.get(1);
+        att = list.get(1);
+        attr_name = list.get(0);
         list.remove(0);
 
         Picasso.get().load(image).fit().into(holder.imageView);
-        holder.title.setText(att);
-        if (offerprice==null)
-        {
-            if (price==null)
-            {
-                price = "৳0";
-            }
-            else price="৳"+price;
-            holder.price.setText(price);
-            holder.previousPrice.setVisibility(View.INVISIBLE);
-        }
-        else
+        holder.title.setText(title);
+
+        if (offerprice!=null)
         {
             price="৳"+price;
             offerprice = "৳"+offerprice;
@@ -77,6 +70,16 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
             holder.price.setText(offerprice);
             holder.previousPrice.setText(price);
             holder.previousPrice.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+        }
+        else
+        {
+            String p;
+            if (price==null)
+                p="0";
+            else p=price;
+            price = "৳"+p;
+            holder.price.setText(price);
+            holder.previousPrice.setVisibility(View.INVISIBLE);
         }
 
 
@@ -123,11 +126,12 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
                     int position = getAdapterPosition();
                     String image = "http://arabianpure.com/public/images/"+values.get(position).getImage();
                     String slug = values.get(position).getSlug();
+                    String id = values.get(position).getId();
                     String title = values.get(position).getTitle();
                     String description = values.get(position).getDescription();
                     String quantity = values.get(position).getQuantity();
                     String sku = values.get(position).getSku();
-                    productListener.onProductClickListener(image,slug,title,description,quantity,sku);
+                    productListener.onProductClickListener(id,slug);
                     /*Intent intent = new Intent(context,SingleProductActivity.class);
                     intent.putExtra("image",image);
                     intent.putExtra("slug",slug);
@@ -142,6 +146,6 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
 
     public interface productClickListener
     {
-        void onProductClickListener(String image, String slug, String title, String description, String quantity, String sku);
+        void onProductClickListener(String id, String slug);
     }
 }
