@@ -40,7 +40,7 @@ dependencies {
     //implementation 'androidx.fragment:fragment:1.2.5'
     //implementation 'androidx.navigation:navigation-fragment-ktx:2.3.1'
     //implementation 'androidx.navigation:navigation-ui-ktx:2.3.1'
-    implementation platform('com.google.firebase:firebase-bom:26.1.0')
+    //implementation platform('com.google.firebase:firebase-bom:26.1.0')
     implementation 'com.squareup.picasso:picasso:2.71828'
 
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
@@ -48,8 +48,10 @@ dependencies {
     implementation 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
 
     implementation 'com.github.smarteist:autoimageslider:1.4.0'
-    implementation 'com.google.firebase:firebase-auth'
-    implementation 'com.google.firebase:firebase-database'
+    implementation 'com.google.firebase:firebase-auth:20.0.1'
+    implementation 'com.google.firebase:firebase-database:19.5.1'
+    implementation 'com.reginald:editspinner:1.1.0'
+    implementation 'com.firebaseui:firebase-ui-database:6.2.1'
 
 
     testImplementation 'junit:junit:4.13.1'

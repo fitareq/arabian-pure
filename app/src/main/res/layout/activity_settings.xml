@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    android:orientation="vertical"
+    tools:context=".activity.SettingsActivity">
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+
+        <ImageView
+            android:id="@+id/settings_back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@string/category_image"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24" />
+
+        <TextView
+            android:id="@+id/settings_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/settings"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14sdp" />
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/settings_account_information"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:text="@string/account_information"
+        android:textAllCaps="false"
+        android:layout_marginTop="5dp"
+        />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/settings_privacy_policy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:text="@string/privacy_policy"
+        android:textAllCaps="false"
+        android:layout_marginTop="1dp"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/settings_refund_policy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:text="@string/refund_policy"
+        android:textAllCaps="false"
+        android:layout_marginTop="1dp"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/settings_customer_upport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:text="@string/customer_support"
+        android:textAllCaps="false"
+        android:layout_marginTop="1dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/settings_help_center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:text="@string/help_center"
+        android:textAllCaps="false"
+        android:layout_marginTop="1dp"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/settings_customer_service"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:text="@string/customer_service"
+        android:textAllCaps="false"
+        android:layout_marginTop="1dp"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/logout_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:text="@string/logout"
+        android:textAllCaps="false"
+        android:layout_marginTop="5dp"/>
+
+
+</LinearLayout>

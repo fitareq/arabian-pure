@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,26 +7,43 @@
     android:orientation="vertical"
     tools:context=".activity.SingleProductActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/single_product_toolbar"
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/button_color"
-        app:titleTextColor="@color/white"
-        app:elevation="20dp"
-        app:navigationIcon="@drawable/ic_arrow_back_white"
-        />
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:padding="10dp"
+        android:id="@+id/toolbar_container">
+        <ImageView
+            android:id="@+id/single_product_back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24"
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@string/category_image" />
+        <TextView
+            android:id="@+id/single_product_toolbar_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/product_title"
+            android:textSize="@dimen/_14sdp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
 
-
-    <androidx.core.widget.NestedScrollView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar_container"
+        android:padding="@dimen/_5sdp">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="5dp">
 
 
 
@@ -45,28 +62,31 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
-                android:padding="5dp"
-                android:layout_marginTop="10dp">
+                android:padding="5dp">
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/single_product_offer_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/_16sdp"
                         android:text="@string/price"
                         android:textColor="@color/black"
-                        android:visibility="gone"/>
+                        android:textSize="@dimen/_16sdp"
+                        android:visibility="gone" />
+
                     <TextView
                         android:id="@+id/single_product_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/_16sdp"
                         android:text="@string/price"
-                        android:textColor="@color/black"/>
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16sdp" />
                 </LinearLayout>
 
 
@@ -74,28 +94,43 @@
                     android:id="@+id/single_product_wishlist"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_14sdp"
-                    android:text="@string/wishlist"
-                    app:drawableLeftCompat="@drawable/ic_baseline_favorite_border_24"
-                    app:drawableStartCompat="@drawable/ic_baseline_favorite_border_24"
-                    android:visibility="visible"
-                    android:textColor="@color/black"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true" />
+                    android:text="@string/wishlist"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp"
+                    android:visibility="visible"
+                    app:drawableLeftCompat="@drawable/ic_baseline_favorite_border_24"
+                    app:drawableStartCompat="@drawable/ic_baseline_favorite_border_24" />
+
                 <TextView
                     android:id="@+id/single_product_wishlisted"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_14sdp"
-                    android:text="@string/wishlist"
-                    app:drawableLeftCompat="@drawable/ic_baseline_favorite_24"
-                    app:drawableStartCompat="@drawable/ic_baseline_favorite_24"
-                    android:visibility="gone"
-                    android:textColor="@color/black"
-                    android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
-                    />
+                    android:layout_alignParentRight="true"
+                    android:text="@string/wishlist"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp"
+                    android:visibility="gone"
+                    app:drawableLeftCompat="@drawable/ic_baseline_favorite_24"
+                    app:drawableStartCompat="@drawable/ic_baseline_favorite_24" />
             </RelativeLayout>
+
+
+                <com.reginald.editspinner.EditSpinner
+                    android:id="@+id/edit_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:dropDownDrawableSpacing="15dp"
+                    app:dropDownDrawableWidth="30dp"
+                    app:dropDownDrawableHeight="30dp"
+                    app:dropDownDrawable="@drawable/ic_baseline_expand_more_black"
+                    android:background="@drawable/card_back"
+                    android:padding="8dp"
+                    android:text="@string/options"
+                    />
+
 
             <View
                 android:layout_width="match_parent"
@@ -176,49 +211,84 @@
                 android:layout_marginTop="10dp"
                 android:padding="5dp"/>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="5dp"
                 android:padding="5dp">
+
                 <TextView
                     android:id="@+id/single_product_quantity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_14sdp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_toEndOf="@+id/quantity_sub"
+                    android:layout_toRightOf="@+id/quantity_sub"
+                    android:text="1"
                     android:textColor="@color/black"
-                    android:text="1"/>
+                    android:textSize="@dimen/_14sdp" />
+
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/quantity_sub"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginStart="57dp"
+                    android:layout_marginLeft="57dp"
                     android:background="@color/white"
-                    android:src="@drawable/ic_baseline_remove_circle_outline_24"
-                    android:layout_marginStart="@dimen/_50sdp"
-                    android:layout_marginLeft="@dimen/_50sdp" />
+                    android:src="@drawable/ic_baseline_remove_circle_outline_24" />
+
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/quantity_add"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginEnd="179dp"
+                    android:layout_marginRight="179dp"
                     android:background="@color/white"
-                    android:src="@drawable/ic_baseline_add_circle_outline_24"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    />
-            </LinearLayout>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/add_to_cart"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:layout_gravity="bottom|end"
-                android:layout_margin="5dp"/>
+                    android:src="@drawable/ic_baseline_add_circle_outline_24" />
+
+                <!--<TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="64dp"
+                    android:layout_marginLeft="64dp"
+                    android:layout_marginEnd="-64dp"
+                    android:layout_marginRight="-64dp"
+                    android:layout_toStartOf="@+id/attribute_option_spinner"
+                    android:layout_toLeftOf="@+id/attribute_option_spinner"
+                    android:layout_toEndOf="@+id/quantity_sub"
+                    android:layout_toRightOf="@+id/quantity_sub"
+                    android:text="select option" />
+
+                <Spinner
+                    android:id="@+id/attribute_option_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    />-->
+            </RelativeLayout>
+
+
         </LinearLayout>
 
-    </androidx.core.widget.NestedScrollView>
+    </ScrollView>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_to_cart_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="4dp"
+        android:src="@drawable/ic_baseline_add_shopping_cart_24"/>
 
-
-</LinearLayout>
+</RelativeLayout>
