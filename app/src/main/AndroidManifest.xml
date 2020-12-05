@@ -13,7 +13,8 @@
         android:theme="@style/Theme.ArabianPure">
         <activity android:name="com.youthfireit.dailydeals.activity.SettingsActivity"/>
         <activity android:name="com.youthfireit.dailydeals.activity.CategoryProductsActivity" />
-        <activity android:name="com.youthfireit.dailydeals.activity.SplashActivity">
+        <activity android:name="com.youthfireit.dailydeals.activity.SplashActivity"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

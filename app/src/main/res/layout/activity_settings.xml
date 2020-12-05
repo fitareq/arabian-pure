@@ -36,64 +36,72 @@
             android:textSize="@dimen/_14sdp" />
     </LinearLayout>
 
-    <com.google.android.material.button.MaterialButton
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/settings_account_information"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:text="@string/account_information"
         android:textAllCaps="false"
         android:layout_marginTop="5dp"
+        android:background="@color/white"
+        android:textSize="@dimen/_14sdp"
         />
-    <com.google.android.material.button.MaterialButton
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/settings_privacy_policy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:text="@string/privacy_policy"
         android:textAllCaps="false"
-        android:layout_marginTop="1dp"/>
-    <com.google.android.material.button.MaterialButton
+        android:layout_marginTop="1dp"
+        android:textSize="@dimen/_14sdp"/>
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/settings_refund_policy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:text="@string/refund_policy"
         android:textAllCaps="false"
-        android:layout_marginTop="1dp"/>
-    <com.google.android.material.button.MaterialButton
+        android:layout_marginTop="1dp"
+        android:textSize="@dimen/_14sdp"/>
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/settings_customer_upport"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:text="@string/customer_support"
         android:textAllCaps="false"
-        android:layout_marginTop="1dp"/>
+        android:layout_marginTop="1dp"
+        android:textSize="@dimen/_14sdp"/>
 
-    <com.google.android.material.button.MaterialButton
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/settings_help_center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:text="@string/help_center"
         android:textAllCaps="false"
-        android:layout_marginTop="1dp"/>
-    <com.google.android.material.button.MaterialButton
+        android:layout_marginTop="1dp"
+        android:textSize="@dimen/_14sdp"/>
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/settings_customer_service"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:text="@string/customer_service"
         android:textAllCaps="false"
-        android:layout_marginTop="1dp"/>
-    <com.google.android.material.button.MaterialButton
+        android:layout_marginTop="1dp"
+        android:textSize="@dimen/_14sdp"/>
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/logout_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:text="@string/logout"
         android:textAllCaps="false"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="5dp"
+        android:textSize="@dimen/_14sdp"/>
 
 
 </LinearLayout>

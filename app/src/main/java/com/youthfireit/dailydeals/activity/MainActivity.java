@@ -83,6 +83,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         {
             bottomNavigationView.setSelectedItemId(R.id.nav_account);
             loadFragment( new AccountFragment());
+        }else if (from.equals("settings"))
+        {
+            bottomNavigationView.setSelectedItemId(R.id.nav_account);
+            loadFragment( new AccountFragment());
         }
         else loadFragment(new HomeFragment(this, this));
     }

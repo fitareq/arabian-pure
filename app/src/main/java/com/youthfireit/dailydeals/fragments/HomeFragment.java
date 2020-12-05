@@ -73,7 +73,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener
 
         initializeViews();
 
-        new loadAllInBack().execute(null, null, null);
+        new loadSlider().execute(null, null, null);
+        new loadBanner().execute(null, null, null);
+        new loadCategory().execute(null, null, null);
+        new loadBreakfast().execute(null, null, null);
+        new loadHealthyFood().execute(null, null, null);
+        new loadLocalBDFood().execute(null, null, null);
+        new loadAllProduct().execute(null, null, null);
 
        /* new CountDownTimer(9000,1000)
         {
@@ -378,21 +384,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener
 
 
 
-    private class loadAllInBack extends AsyncTask<Void, Void, Void>
+    private class loadSlider extends AsyncTask<Void, Void, Void>
     {
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            progressDialog.show();
+            new loadBanner().execute(null,null,null);
         }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-
-            progressDialog.dismiss();
-        }
-
         @Override
         protected Void doInBackground(Void... voids)
         {
@@ -400,18 +399,79 @@ public class HomeFragment extends Fragment implements View.OnClickListener
 
 
             loadSliderData();
-            loadBannerData();
-            loadAllProductData();
-            loadCategoryData();
-            loadBreakfastData();
-            loadHealthyFoodData();
-            loadLocalBDFoodData();
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+//            loadBannerData();
+//            loadAllProductData();
+//            loadCategoryData();
+//            loadBreakfastData();
+//            loadHealthyFoodData();
+//            loadLocalBDFoodData();
+//            try {
+//                Thread.sleep(1000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
 
+            return null;
+        }
+    }
+    private class loadBanner extends AsyncTask<Void, Void, Void>
+    {
+
+        @Override
+        protected Void doInBackground(Void... voids)
+        {
+            loadBannerData();
+            return null;
+        }
+    }
+    private class loadLocalBDFood extends AsyncTask<Void, Void, Void>
+    {
+
+
+        @Override
+        protected Void doInBackground(Void... voids)
+        {
+            loadLocalBDFoodData();
+            return null;
+        }
+    }
+    private class loadCategory extends AsyncTask<Void, Void, Void>
+    {
+
+        @Override
+        protected Void doInBackground(Void... voids)
+        {
+            loadCategoryData();
+            return null;
+        }
+    }
+    private class loadBreakfast extends AsyncTask<Void, Void, Void>
+    {
+
+        @Override
+        protected Void doInBackground(Void... voids)
+        {
+            loadBreakfastData();
+            return null;
+        }
+    }
+    private class loadHealthyFood extends AsyncTask<Void, Void, Void>
+    {
+
+        @Override
+        protected Void doInBackground(Void... voids)
+        {
+            loadHealthyFoodData();
+            return null;
+        }
+    }
+    private class loadAllProduct extends AsyncTask<Void, Void, Void>
+    {
+
+        @Override
+        protected Void doInBackground(Void... voids)
+        {
+            loadAllProductData();
             return null;
         }
     }

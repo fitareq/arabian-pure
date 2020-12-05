@@ -344,7 +344,7 @@ public class SingleProductActivity extends AppCompatActivity implements View.OnC
                 {
                     if (snapshot.exists())
                     {
-                        Toast.makeText(SingleProductActivity.this, "in snapshot", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(SingleProductActivity.this, "in snapshot", Toast.LENGTH_SHORT).show();
                         String id = snapshot.child("id").getValue().toString();
                         String quantity = productQuantity.getText().toString();
                         String price = productPrice.getText().toString();

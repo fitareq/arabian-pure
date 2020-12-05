@@ -1,5 +1,6 @@
 package com.youthfireit.dailydeals.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -50,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
     private Toolbar loginToolbar;
     private FirebaseAuth mAuth;
     private DatabaseReference reference;
+    private static ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,17 +90,21 @@ public class LoginActivity extends AppCompatActivity {
 
     private void userLogin()
     {
+        progressDialog.show();
         String number = userPhone.getText().toString();
         String pass = userPassword.getText().toString();
         if (TextUtils.isEmpty(number))
         {
             userPhone.setError("Enter a Valid Phone");
+            progressDialog.dismiss();
         }else if (TextUtils.isEmpty(pass))
         {
             userPassword.setError("Enter a Valid Password");
+            progressDialog.dismiss();
         }else if (pass.length()<8)
         {
             userPassword.setError("Password Must be At Least 8 Digits");
+            progressDialog.dismiss();
         }else
         {
             Login login = new Login(number,pass);
@@ -110,7 +116,7 @@ public class LoginActivity extends AppCompatActivity {
                 {
                     if (response.code()==201)
                     {
-                        customToastShow("Login Successful "+response.body().getLoggedinId(),1);
+                        //customToastShow("Login Successful "+response.body().getLoggedinId(),1);
                         mAuth.createUserWithEmailAndPassword(number+"@site.com",pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -152,7 +158,7 @@ public class LoginActivity extends AppCompatActivity {
             {
                 if (!snapshot.exists())
                 {
-                    customToastShow("true",1);
+                    //customToastShow("true",1);
                     ArabianPureApi arabianPureApi = APIinstance.retroInstace().create(ArabianPureApi.class);
                     Call<SaveUserInfo> call = arabianPureApi.getUserInfo(uId);
                     call.enqueue(new Callback<SaveUserInfo>() {
@@ -163,6 +169,8 @@ public class LoginActivity extends AppCompatActivity {
 
                                 ref.setValue(response.body());
                                 goToHomePage();
+                                customToastShow("Login Successful",1);
+                                progressDialog.dismiss();
                             }
                         }
 
@@ -230,6 +238,11 @@ public class LoginActivity extends AppCompatActivity {
     private void initialize()
 
     {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Loading");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setProgress(0);
         userPhone = findViewById(R.id.login_phone_number);
         userPassword = findViewById(R.id.login_password);
         btnLogin = findViewById(R.id.login_button);

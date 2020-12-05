@@ -73,7 +73,7 @@ public class CategoryProductsActivity extends AppCompatActivity implements Produ
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToHomePage();
+                onBackPressed();
             }
         });
 
