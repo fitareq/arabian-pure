@@ -11,7 +11,6 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardElevation="10dp"
         android:layout_margin="5dp">
         <LinearLayout
             android:layout_width="match_parent"
@@ -146,17 +145,72 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/track_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Track your product"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sdp"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/order_track_phone_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/phone_number"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_below="@+id/track_tv"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/order_track_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/order_tracking_id_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/tracking_id"
+                android:layout_below="@+id/order_track_phone_layout"
+                android:layout_marginTop="@dimen/_5sdp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/order_tracking_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <Button
+                android:id="@+id/order_track_search_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/order_tracking_id_layout"
+                android:text="@string/search"
+                android:layout_marginTop="@dimen/_5sdp"
+                />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
 
 
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested_scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="3dp"
-            app:cardCornerRadius="10dp">
+            app:cardCornerRadius="10dp"
+            android:visibility="gone">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

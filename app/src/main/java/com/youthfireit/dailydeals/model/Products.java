@@ -1,7 +1,15 @@
 package com.youthfireit.dailydeals.model;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+import com.youthfireit.dailydeals.utils.Constt;
+
 public class Products
 {
+
     private String id;
     private String category_id;
     private String brand_id;

@@ -14,7 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 import com.youthfireit.dailydeals.R;
-import com.youthfireit.dailydeals.model.Products;
+import com.youthfireit.dailydeals.local_room.room_model.ProductsModel;
+import com.youthfireit.dailydeals.utils.Constt;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,132 +23,154 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHolder>
-{
-    private final List<Products> values;
-    public Context context;
-    productClickListener productListener;
-    public ProductsAdapter( List<Products> values, Context context,productClickListener productListener) {
-        this.context = context;
-        this.values = values;
-        this.productListener = productListener;
-    }
+
+public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.myViewHolder> {
 
 
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        context = parent.getContext();
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.products_card_view,parent,false);
-        return new ViewHolder(v);
-    }
+private List<ProductsModel> values;
+private Context context;
+private final productClickListener productListener;
 
-    @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position)
-    {
-        String image = "http://arabianpure.com/public/images/"+values.get(position).getImage();
-        String title = values.get(position).getTitle();
-        String price = values.get(position).getPrice();
-        String offerprice = values.get(position).getOffer_price();
-        String att = values.get(position).getAttribute_options();
-        String attr_name;
-        List<String> list = new ArrayList<String>();
+
+
+public ProductsAdapter(List<ProductsModel> values, Context context, productClickListener productListener) {
+
+    this.context = context;
+    this.values = values;
+    this.productListener = productListener;
+}
+
+
+
+@NonNull
+@Override
+public myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+    context = parent.getContext();
+    View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.products_card_view, parent, false);
+    return new myViewHolder(v);
+}
+
+
+
+@Override
+public void onBindViewHolder(@NonNull myViewHolder holder, int position) {
+
+    ProductsModel current = values.get(position);
+    String image = current.getProductImage();
+    String title = current.getProductTitle();
+    String price = current.getProductPrice();
+    String offerprice = current.getProductOfferPrice();
+    String att = current.getProductAttributeOptions();
+    String attr_name;
+    List<String> list = new ArrayList<>();
+    if (att != null) {
         Matcher m = Pattern.compile("(\".+?\")").matcher(att);
         while (m.find())
-            list.add(m.group(1).replace("\"","").replace(" ",""));
+            list.add(m.group(1).replace("\"", "").replace(" ", ""));
         att = list.get(1);
         attr_name = list.get(0);
         list = Arrays.asList(att.split(","));
+    }
 
+    if (!image.isEmpty()) {
+        image = Constt.PRODUCT_IMAGE_BASE_URL + image;
         Picasso.get().load(image).fit().into(holder.imageView);
-        holder.title.setText(title);
+    }
+    holder.title.setText(title);
 
-        if (offerprice!=null)
-        {
-            price="৳"+price;
-            offerprice = "৳"+offerprice;
-            holder.previousPrice.setVisibility(View.VISIBLE);
-            holder.price.setText(offerprice);
-            holder.previousPrice.setText(price);
-            holder.previousPrice.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-        }
-        else
-        {
-            String p;
-            if (price==null)
-                p="0";
-            else p=price;
-            price = "৳"+p;
-            holder.price.setText(price);
-            holder.previousPrice.setVisibility(View.INVISIBLE);
-        }
-
-
-
-
+    if (offerprice != null) {
+        price = "৳" + price;
+        offerprice = "৳" + offerprice;
+        holder.previousPrice.setVisibility(View.VISIBLE);
+        holder.price.setText(offerprice);
+        holder.previousPrice.setText(price);
+        holder.previousPrice.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+    } else {
+        String p;
+        if (price == null)
+            p = "0";
+        else p = price;
+        price = "৳" + p;
+        holder.price.setText(price);
+        holder.previousPrice.setVisibility(View.INVISIBLE);
     }
 
 
-
-    @Override
-    public int getItemCount()
-    {
-        return values.size();
-    }
+}
 
 
 
+public void setValues(List<ProductsModel> products) {
+
+    this.values = products;
+}
 
 
 
+@Override
+public int getItemCount() {
+
+    return values.size();
+}
 
 
 
+public class myViewHolder extends RecyclerView.ViewHolder {
+
+
+    public TextView title, price, previousPrice;
+    public ImageView imageView;
+    public RatingBar productRatingBar;
 
 
 
+    public myViewHolder(@NonNull View itemView) {
 
+        super(itemView);
+        title = itemView.findViewById(R.id.product_title);
+        price = itemView.findViewById(R.id.product_price);
+        previousPrice = itemView.findViewById(R.id.product_previous_price);
+        imageView = itemView.findViewById(R.id.product_image);
+        productRatingBar = itemView.findViewById(R.id.product_rating);
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-
-    public class ViewHolder extends RecyclerView.ViewHolder
-    {
-        public TextView title,price,previousPrice;
-        public ImageView imageView;
-        public RatingBar productRatingBar;
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            title = itemView.findViewById(R.id.product_title);
-            price = itemView.findViewById(R.id.product_price);
-            previousPrice = itemView.findViewById(R.id.product_previous_price);
-            imageView = itemView.findViewById(R.id.product_image);
-            productRatingBar = itemView.findViewById(R.id.product_rating);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    String image = "http://arabianpure.com/public/images/"+values.get(position).getImage();
-                    String slug = values.get(position).getSlug();
-                    String id = values.get(position).getId();
-                    String title = values.get(position).getTitle();
-                    String description = values.get(position).getDescription();
-                    String quantity = values.get(position).getQuantity();
-                    String sku = values.get(position).getSku();
-                    productListener.onProductClickListener(id,slug,image,title);
+                int position = getAdapterPosition();
+                String image = "http://arabianpure.com/public/images/" + values.get(position).getProductImage();
+                String slug = values.get(position).getProductSlug();
+                int id = values.get(position).getProductId();
+                String title = values.get(position).getProductTitle();
+                String description = values.get(position).getProductDescription();
+                int quantity = values.get(position).getProductQuantity();
+                String sku = values.get(position).getProductSku();
+                productListener.onProductClickListener(String.valueOf(id), slug, image, title);
                     /*Intent intent = new Intent(context,SingleProductActivity.class);
                     intent.putExtra("image",image);
                     intent.putExtra("slug",slug);
                     context.startActivity(intent);*/
-                }
-            });
-        }
+            }
+        });
     }
 
 
 
 
-    public interface productClickListener
-    {
-        void onProductClickListener(String id, String slug, String image, String title);
-    }
+}
+
+
+public interface productClickListener {
+
+
+    void onProductClickListener(String id, String slug, String image, String title);
+
+
+
+
+}
+
+
+
+
 }

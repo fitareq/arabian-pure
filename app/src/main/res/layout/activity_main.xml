@@ -17,6 +17,23 @@
 
 
 
+    <LinearLayout
+        android:id="@+id/no_internet_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_internet_connection"
+            android:textSize="@dimen/_15sdp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:padding="10dp"
+            />
+    </LinearLayout>
+
 
 
 
@@ -51,6 +68,7 @@
         app:menu="@menu/nav_menu"
         app:elevation="30dp"
         app:labelVisibilityMode="labeled"
+        app:itemRippleColor="@color/gray"
         />
         <!--app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"-->
 

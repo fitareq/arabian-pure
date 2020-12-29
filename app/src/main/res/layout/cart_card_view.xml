@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="5dp"
+    app:cardElevation="10dp"
     app:cardCornerRadius="10dp">
 
 
@@ -73,7 +74,7 @@
                         android:layout_marginStart="48dp"
                         android:layout_marginLeft="48dp"
                         android:background="@color/white"
-                        android:src="@drawable/ic_baseline_remove_circle_outline_24" />
+                        android:src="@drawable/ic_remove" />
 
                     <androidx.appcompat.widget.AppCompatImageButton
                         android:id="@+id/cart_quantity_add"
@@ -84,7 +85,7 @@
                         android:layout_marginEnd="48dp"
                         android:layout_marginRight="48dp"
                         android:background="@color/white"
-                        android:src="@drawable/ic_baseline_add_circle_outline_24" />
+                        android:src="@drawable/ic_add" />
 
                 </RelativeLayout>
             </LinearLayout>

@@ -1,5 +1,7 @@
 package com.youthfireit.dailydeals.fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,10 +14,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -38,6 +42,7 @@ import retrofit2.Response;
 
 public class AccountFragment extends Fragment implements View.OnClickListener
 {
+    private NestedScrollView nestedScrollView;
     private TextView myOrder, myWishList, userName;
     private Button loginOrRegister;
     private FirebaseAuth mAuth;
@@ -55,9 +60,10 @@ public class AccountFragment extends Fragment implements View.OnClickListener
         rootView = inflater.inflate(R.layout.account_fragment, container, false);
         initializeViews();
         checkIfUserLoggedIn();
-        loadProductsData();
+        //loadProductsData();
         loginOrRegister.setOnClickListener(this);
         settingsBtn.setOnClickListener(this);
+        myOrder.setOnClickListener(this);
         //userSignOut.setOnClickListener(this);
         return rootView;
     }
@@ -66,7 +72,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener
     {
         ArabianPureApi arabianPureApi = APIinstance.retroInstace().create(ArabianPureApi.class);
         Call<List<Products>> call = arabianPureApi.getProducts();
-        call.enqueue(new Callback<List<Products>>() {
+        /*call.enqueue(new Callback<List<Products>>() {
             @Override
             public void onResponse( Call<List<Products>> call,  Response<List<Products>> response)
             {
@@ -90,13 +96,14 @@ public class AccountFragment extends Fragment implements View.OnClickListener
             {
                 Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
     }
 
     private void checkIfUserLoggedIn()
     {
         if (mAuth.getCurrentUser()!=null)
         {
+            nestedScrollView.setVisibility(View.VISIBLE);
             reference.child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot)
@@ -106,6 +113,8 @@ public class AccountFragment extends Fragment implements View.OnClickListener
                         userName.setText(snapshot.child("name").getValue().toString());
                         loginOrRegister.setVisibility(View.GONE);
                         //userSignOut.setVisibility(View.VISIBLE);
+
+                        //loadProductsData();
                     }
 
                 }
@@ -119,15 +128,19 @@ public class AccountFragment extends Fragment implements View.OnClickListener
         }
         else {
 
+            nestedScrollView.setVisibility(View.GONE);
             userName.setText(R.string.wellcome_msg);
             //userSignOut.setVisibility(View.GONE);
             loginOrRegister.setVisibility(View.VISIBLE);
+            Intent intent = new Intent(getActivity(),LoginActivity.class);
+            startActivity(intent);
         }
     }
 
     private void initializeViews()
     {
         //initialize views
+        nestedScrollView = rootView.findViewById(R.id.nested_scroll);
         loginOrRegister = rootView.findViewById(R.id.accountfragment_login_button);
         myOrder = rootView.findViewById(R.id.user_order);
         myWishList = rootView.findViewById(R.id.user_wishlist);
@@ -160,6 +173,22 @@ public class AccountFragment extends Fragment implements View.OnClickListener
         {
             Intent intent = new Intent(getActivity(), SettingsActivity.class);
             startActivity(intent);
+        }else if (v.getId()==R.id.user_order)
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setTitle("Track your order");
+            View ve = LayoutInflater.from(getContext()).inflate(R.layout.track_order_card,null);
+            builder.setView(LayoutInflater.from(getContext()).inflate(R.layout.track_order_card,null));
+            TextInputEditText phone = ve.findViewById(R.id.order_track_phone);
+            TextInputEditText tracking_id = ve.findViewById(R.id.order_tracking_id);
+            builder.setPositiveButton("Search", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which)
+                {
+
+                }
+            });
+
         }
         /*else if (v.getId()==R.id.user_sign_out)
         {

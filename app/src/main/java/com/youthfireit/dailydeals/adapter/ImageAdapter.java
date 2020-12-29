@@ -10,6 +10,7 @@ import com.smarteist.autoimageslider.SliderViewAdapter;
 import com.squareup.picasso.Picasso;
 import com.youthfireit.dailydeals.R;
 import com.youthfireit.dailydeals.model.PImage;
+import com.youthfireit.dailydeals.utils.Constt;
 
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class ImageAdapter extends SliderViewAdapter<ImageAdapter.imageViewHolder
     @Override
     public void onBindViewHolder(imageViewHolder viewHolder, int position)
     {
-        String image = "http://arabianpure.com/public/images/"+pImageList.get(position).getImage();
+        String image = Constt.PRODUCT_IMAGE_BASE_URL+pImageList.get(position).getImage();
         Picasso.get().load(image).into(viewHolder.bannerImage);
 
     }

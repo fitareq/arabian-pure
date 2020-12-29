@@ -10,39 +10,51 @@ import android.widget.TextView;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 import com.squareup.picasso.Picasso;
 import com.youthfireit.dailydeals.R;
+import com.youthfireit.dailydeals.local_room.room_model.HomepageSliderModel;
 import com.youthfireit.dailydeals.model.HomepageSlider;
+import com.youthfireit.dailydeals.utils.Constt;
 
 import java.util.List;
 
 public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderViewHolder>
 {
-    private List<HomepageSlider> productsList;
+    private List<HomepageSliderModel> sliderList;
     private Context context;
 
-    public SliderAdapter(List<HomepageSlider> productsList)
+    public SliderAdapter(List<HomepageSliderModel> sliderList)
     {
-        this.productsList = productsList;
+        this.sliderList = sliderList;
     }
 
     @Override
     public SliderViewHolder onCreateViewHolder(ViewGroup parent)
     {
         context = parent.getContext();
-        View v = LayoutInflater.from(context).inflate(R.layout.slider_card_view,null);
+        View v = LayoutInflater.from(context).inflate(R.layout.slider_card_view,parent,false);
         return new SliderViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(SliderViewHolder viewHolder, int position)
     {
-        String image = "http://arabianpure.com/public/images/sliders/"+productsList.get(position).getSlider_image();
-        viewHolder.sliderTitle.setText(productsList.get(position).getTitle());
-        Picasso.get().load(image).into(viewHolder.sliderImage);
+        HomepageSliderModel current = sliderList.get(position);
+        String image = Constt.SLIDER_IMAGE_BASE_URL+current.getSliderImage();
+        String title = current.getSliderTitle();
+        viewHolder.sliderTitle.setText(title);
+        if (!image.isEmpty())
+        {
+            Picasso.get().load(image).into(viewHolder.sliderImage);
+        }
     }
 
     @Override
     public int getCount() {
-        return productsList.size();
+        return sliderList.size();
+    }
+
+    public void setSliderList(List<HomepageSliderModel> sliders)
+    {
+        sliderList = sliders;
     }
 
 

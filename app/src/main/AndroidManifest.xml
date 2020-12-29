@@ -1,19 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.youthfireit.dailydeals">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:usesCleartextTraffic="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ArabianPure">
-        <activity android:name="com.youthfireit.dailydeals.activity.SettingsActivity"/>
-        <activity android:name="com.youthfireit.dailydeals.activity.CategoryProductsActivity" />
+        android:theme="@style/Theme.ArabianPure"
+        tools:targetApi="m"
+        android:allowClearUserData="true"
+        android:allowClearUserDataOnFailedRestore="true">
+        <activity android:name="com.youthfireit.dailydeals.activity.SettingsActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.youthfireit.dailydeals.activity.CategoryProductsActivity"
+            android:screenOrientation="portrait"
+            />
         <activity android:name="com.youthfireit.dailydeals.activity.SplashActivity"
+            android:screenOrientation="portrait"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,11 +32,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.youthfireit.dailydeals.activity.SingleProductActivity" />
-        <activity android:name="com.youthfireit.dailydeals.activity.ResetPasswordActivity" />
-        <activity android:name="com.youthfireit.dailydeals.activity.LoginActivity" />
-        <activity android:name="com.youthfireit.dailydeals.activity.RegisterActivity" />
-        <activity android:name="com.youthfireit.dailydeals.activity.MainActivity" />
+        <activity android:name="com.youthfireit.dailydeals.activity.SingleProductActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.youthfireit.dailydeals.activity.ResetPasswordActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.youthfireit.dailydeals.activity.LoginActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.youthfireit.dailydeals.activity.RegisterActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.youthfireit.dailydeals.activity.MainActivity"
+            android:screenOrientation="portrait"
+            />
     </application>
 
 </manifest>

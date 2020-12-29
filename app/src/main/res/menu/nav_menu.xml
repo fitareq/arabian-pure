@@ -9,8 +9,7 @@
     <item android:title="cart"
         android:icon="@drawable/ic_action_cart"
         app:showAsAction="ifRoom"
-        android:id="@+id/nav_cart"
-        android:enabled="true"/>
+        android:id="@+id/nav_cart"/>
     <item android:title="category"
         android:icon="@drawable/ic_action_category"
         app:showAsAction="ifRoom"

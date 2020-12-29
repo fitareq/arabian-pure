@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.youthfireit.dailydeals.R;
 import com.youthfireit.dailydeals.adapter.CategoryAdapter;
+import com.youthfireit.dailydeals.local_room.room_model.CategoriesModel;
 import com.youthfireit.dailydeals.model.Category;
 import com.youthfireit.dailydeals.network.APIinstance;
 import com.youthfireit.dailydeals.network.ArabianPureApi;
@@ -26,7 +27,7 @@ import retrofit2.Response;
 
 public class CategoryFragment extends Fragment
 {
-    List<Category> categories;
+    List<CategoriesModel> categories;
     private RecyclerView allCategory;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager manager;
@@ -51,7 +52,7 @@ public class CategoryFragment extends Fragment
 
     private void loadCategoryData()
     {
-        ArabianPureApi arabianPureApi = APIinstance.retroInstace().create(ArabianPureApi.class);
+      /*  ArabianPureApi arabianPureApi = APIinstance.retroInstace().create(ArabianPureApi.class);
         Call<List<Category>> categoryCall = arabianPureApi.getCategory();
         categoryCall.enqueue(new Callback<List<Category>>() {
             @Override
@@ -71,6 +72,6 @@ public class CategoryFragment extends Fragment
             public void onFailure( Call<List<Category>> call,  Throwable t) {
 
             }
-        });
+        });*/
     }
 }

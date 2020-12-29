@@ -9,17 +9,19 @@ import android.widget.ImageView;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 import com.squareup.picasso.Picasso;
 import com.youthfireit.dailydeals.R;
+import com.youthfireit.dailydeals.local_room.room_model.HomepageBannerModel;
 import com.youthfireit.dailydeals.model.HomepageBanner;
+import com.youthfireit.dailydeals.utils.Constt;
 
 import java.util.List;
 
 public class BannerAdapter extends SliderViewAdapter<BannerAdapter.BannerViewHolder>
 {
 
-    private List<HomepageBanner> homepageBanners;
+    private List<HomepageBannerModel> homepageBanners;
     private Context context;
 
-    public BannerAdapter(List<HomepageBanner> homepageBanners) {
+    public BannerAdapter(List<HomepageBannerModel> homepageBanners) {
         this.homepageBanners = homepageBanners;
     }
 
@@ -34,8 +36,13 @@ public class BannerAdapter extends SliderViewAdapter<BannerAdapter.BannerViewHol
     public void onBindViewHolder(BannerViewHolder viewHolder, int position)
     {
 
-        String image = "http://arabianpure.com/public/images/"+homepageBanners.get(position).getImage();
-        Picasso.get().load(image).into(viewHolder.bannerImage);
+        HomepageBannerModel current = homepageBanners.get(position);
+        String image =current.getBannerImage();
+        if (!image.isEmpty())
+        {
+            image = Constt.BANNER_IMAGE_BASE_URL+image;
+            Picasso.get().load(image).into(viewHolder.bannerImage);
+        }
     }
 
     @Override
@@ -44,6 +51,10 @@ public class BannerAdapter extends SliderViewAdapter<BannerAdapter.BannerViewHol
     }
 
 
+    public void setHomepageBanners(List<HomepageBannerModel> banners)
+    {
+        homepageBanners = banners;
+    }
 
 
 

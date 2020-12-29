@@ -207,7 +207,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }else if (v.getId()==R.id.register_login_textview)
         {
             goToLoginPage();
-        }else if (v.getId()==R.id.register_login_textview)
+        }else if (v.getId()==R.id.register_button)
         {
             registerUser();
         }

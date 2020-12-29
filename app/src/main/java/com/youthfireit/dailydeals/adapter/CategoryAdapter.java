@@ -5,26 +5,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 import com.youthfireit.dailydeals.R;
+import com.youthfireit.dailydeals.local_room.room_model.CategoriesModel;
 import com.youthfireit.dailydeals.model.Category;
+import com.youthfireit.dailydeals.utils.Constt;
 
 import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder>
 {
-    private final List<Category> categories;
-    private final int listSize;
-    categoryClickListener categoryListener;
+    private  List<CategoriesModel> categories;
+    private final categoryClickListener categoryListener;
 
-    public CategoryAdapter(List<Category> categories, int lSize, categoryClickListener categoryListener)
+    public CategoryAdapter(List<CategoriesModel> categories, categoryClickListener categoryListener)
     {
         this.categories = categories;
-        this.listSize = lSize;
         this.categoryListener = categoryListener;
     }
 
@@ -39,18 +40,30 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position)
     {
-        String image = "http://arabianpure.com/public/images/categories/"+categories.get(position).getThumbnail();
-        String title = categories.get(position).getName();
-        Picasso.get().load(image).into(holder.categoryImage);
+
+        CategoriesModel current = categories.get(position);
+
+        String image = current.getCategoryThumbnail();
+        String title = current.getCategoryName();
+
+        if (!image.isEmpty())
+        {
+            image = Constt.CATEGORY_IMAGE_BASE_URL+image;
+            Picasso.get().load(image).into(holder.categoryImage);
+        }
         holder.categoryTitle.setText(title);
     }
 
     @Override
     public int getItemCount() {
 
-        return listSize;
+        return categories.size();
     }
 
+    public void setCategories(List<CategoriesModel> categories)
+    {
+        this.categories = categories;
+    }
 
 
 
@@ -68,14 +81,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
             categoryImage = itemView.findViewById(R.id.category_image);
 
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v)
-                {
-                    String id = categories.get(getAdapterPosition()).getId();
-                    String title = categories.get(getAdapterPosition()).getName();
-                    categoryListener.onCategoryClickListener(id,title);
-                }
+            itemView.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                int id = categories.get(position).getCategoryId();
+                String title = categories.get(position).getCategoryName();
+                categoryListener.onCategoryClickListener(id,title);
             });
 
 
@@ -90,7 +100,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
 public interface categoryClickListener
 {
-    void onCategoryClickListener(String id, String title);
+    void onCategoryClickListener(int id, String title);
 }
 
 

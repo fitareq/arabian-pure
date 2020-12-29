@@ -8,7 +8,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.youthfireit.dailydeals.R;
 import com.youthfireit.dailydeals.adapter.ProductsAdapter;
@@ -29,6 +31,7 @@ public class CategoryProductsActivity extends AppCompatActivity implements Produ
     private RecyclerView.Adapter productsAdapter;
     private RecyclerView.LayoutManager productsManager;
     private List<Products> productsList;
+    private LinearLayout productContainer, noProductMsg;
 
     private String category_id,category_title;
     private ImageView backBtn;
@@ -40,6 +43,8 @@ public class CategoryProductsActivity extends AppCompatActivity implements Produ
         category_id = getIntent().getStringExtra("id");
         category_title = getIntent().getStringExtra("title");
 
+        noProductMsg = findViewById(R.id.no_product_msg);
+        productContainer = findViewById(R.id.category_products_holder);
         categoryTitle = findViewById(R.id.category_wise_title);
         backBtn = findViewById(R.id.back_btn);
         categoryWiseProductsRecyclerView = findViewById(R.id.category_products);
@@ -48,7 +53,7 @@ public class CategoryProductsActivity extends AppCompatActivity implements Produ
         categoryWiseProductsRecyclerView.setLayoutManager(productsManager);
         ArabianPureApi arabianPureApi = APIinstance.retroInstace().create(ArabianPureApi.class);
         Call<List<Products>> call = arabianPureApi.getSpecificCategoryProducts(category_id);
-        call.enqueue(new Callback<List<Products>>() {
+        /*call.enqueue(new Callback<List<Products>>() {
             @Override
             public void onResponse(Call<List<Products>> call, Response<List<Products>> response)
             {
@@ -57,8 +62,15 @@ public class CategoryProductsActivity extends AppCompatActivity implements Produ
                     productsList = response.body();
                     if (productsList!=null)
                     {
-                        productsAdapter = new ProductsAdapter(productsList, CategoryProductsActivity.this,  CategoryProductsActivity.this);
-                        categoryWiseProductsRecyclerView.setAdapter(productsAdapter);
+                        if (productsList.size()!=0) {
+                            productContainer.setVisibility(View.VISIBLE);
+                            noProductMsg.setVisibility(View.GONE);
+                            productsAdapter = new ProductsAdapter(productsList, CategoryProductsActivity.this, CategoryProductsActivity.this);
+                            categoryWiseProductsRecyclerView.setAdapter(productsAdapter);
+                        }else {
+                            productContainer.setVisibility(View.GONE);
+                            noProductMsg.setVisibility(View.VISIBLE);
+                        }
                     }
                 }
             }
@@ -68,7 +80,7 @@ public class CategoryProductsActivity extends AppCompatActivity implements Produ
 
             }
         });
-
+*/
         categoryTitle.setText(category_title);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override

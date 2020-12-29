@@ -114,7 +114,7 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<Login> call,  Response<Login> response)
                 {
-                    if (response.code()==201)
+                    if (response.isSuccessful())
                     {
                         //customToastShow("Login Successful "+response.body().getLoggedinId(),1);
                         mAuth.createUserWithEmailAndPassword(number+"@site.com",pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -123,7 +123,8 @@ public class LoginActivity extends AppCompatActivity {
                                 mAuth.signInWithEmailAndPassword(number+"@site.com",pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                     @Override
                                     public void onComplete(@NonNull Task<AuthResult> task) {
-                                        saveNewUserToFirebaseDatabase(response.body().getLoggedinId());
+                                        if (response.body()!=null)
+                                            saveNewUserToFirebaseDatabase(response.body().getLoggedinId());
                                     }
                                 });
 
@@ -149,44 +150,45 @@ public class LoginActivity extends AppCompatActivity {
     private void saveNewUserToFirebaseDatabase(String id)
     {
         //customToastShow("saveNewUserToFirebaseDatabase",1);
-        int uId = Integer.parseInt(id);
-        String userId = mAuth.getUid();
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users").child(userId);
-        reference.child(userId).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot)
-            {
-                if (!snapshot.exists())
-                {
-                    //customToastShow("true",1);
-                    ArabianPureApi arabianPureApi = APIinstance.retroInstace().create(ArabianPureApi.class);
-                    Call<SaveUserInfo> call = arabianPureApi.getUserInfo(uId);
-                    call.enqueue(new Callback<SaveUserInfo>() {
-                        @Override
-                        public void onResponse(Call<SaveUserInfo> call, Response<SaveUserInfo> response) {
-                            if (response.isSuccessful())
-                            {
+        if (mAuth.getCurrentUser()!=null) {
+            String userId = mAuth.getUid();
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users").child(userId);
+            reference.child(userId).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (!snapshot.exists()) {
+                        //customToastShow("true",1);
+                        ArabianPureApi arabianPureApi = APIinstance.retroInstace().create(ArabianPureApi.class);
+                        Call<SaveUserInfo> call = arabianPureApi.getUserInfo(Integer.parseInt(id));
+                        call.enqueue(new Callback<SaveUserInfo>() {
+                            @Override
+                            public void onResponse(Call<SaveUserInfo> call, Response<SaveUserInfo> response) {
+                                if (response.isSuccessful()) {
 
-                                ref.setValue(response.body());
-                                goToHomePage();
-                                customToastShow("Login Successful",1);
-                                progressDialog.dismiss();
+                                    ref.setValue(response.body());
+                                    goToHomePage();
+                                    customToastShow("Login Successful", 1);
+                                    progressDialog.dismiss();
+                                }
                             }
-                        }
 
-                        @Override
-                        public void onFailure(Call<SaveUserInfo> call, Throwable t) {
+                            @Override
+                            public void onFailure(Call<SaveUserInfo> call, Throwable t) {
 
-                        }
-                    });
+                            }
+                        });
+                    }
                 }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
+                }
+            });
+        }else {
+            customToastShow("Internal server error", 0);
+            progressDialog.dismiss();
+        }
 
     }
 
@@ -221,7 +223,17 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    private void goToResetPasswordPage()
+
+@Override
+public void onBackPressed() {
+
+    super.onBackPressed();
+    goToHomePage();
+}
+
+
+
+private void goToResetPasswordPage()
     {
         Intent intent = new Intent(LoginActivity.this, ResetPasswordActivity.class);
         startActivity(intent);

@@ -30,9 +30,9 @@
     <string name="quantity">Quantity</string>
     <string name="add_to_cart">Add to cart</string>
     <string name="notification">Notification</string>
-    <string name="breakfast">Breakfast</string>
+    <string name="top_rated">Top Rated</string>
     <string name="price">Price</string>
-    <string name="healthy_foods">Healthy Foods</string>
+    <string name="week_deals">Week Deals</string>
     <string name="local_bd_food">Local BD Food</string>
     <string name="_0">0</string>
     <string name="my_wishlist">My Wishlist</string>
@@ -52,6 +52,14 @@
     <string name="customer_support">Customer Support</string>
     <string name="help_center">Help Center</string>
     <string name="customer_service">Customer Service</string>
+    <string name="no_product">There are no items in this category. Please check back soon!</string>
+    <string name="no_internet_connection">No internet connection!</string>
+    <string name="tracking_id">Tracking id</string>
+    <string name="search">Search</string>
+    <string name="todo">TODO</string>
+    <string name="show_less">Show Less</string>
+    <string name="show_more">Show More</string>
+    <string name="no_description">Item has no description</string>
 
 
 </resources>

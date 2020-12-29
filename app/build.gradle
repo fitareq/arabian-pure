@@ -32,12 +32,15 @@ android {
 
 dependencies {
 
+    def lifecycle_version = "2.2.0"
+    def arch_version = "2.1.0"
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    //scaleable
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
-    implementation 'com.squareup.picasso:picasso:2.71828'
-    //implementation 'androidx.fragment:fragment:1.2.5'
+
+    implementation 'androidx.fragment:fragment:1.2.5'
     //implementation 'androidx.navigation:navigation-fragment-ktx:2.3.1'
     //implementation 'androidx.navigation:navigation-ui-ktx:2.3.1'
     //implementation platform('com.google.firebase:firebase-bom:26.1.0')
@@ -49,10 +52,44 @@ dependencies {
 
     implementation 'com.github.smarteist:autoimageslider:1.4.0'
     implementation 'com.google.firebase:firebase-auth:20.0.1'
-    implementation 'com.google.firebase:firebase-database:19.5.1'
+    implementation 'com.google.firebase:firebase-database:19.6.0'
     implementation 'com.reginald:editspinner:1.1.0'
     implementation 'com.firebaseui:firebase-ui-database:6.2.1'
 
+
+
+
+    //room database
+    implementation "androidx.room:room-runtime:2.2.6"
+    annotationProcessor "androidx.room:room-compiler:2.2.6"
+    androidTestImplementation "androidx.room:room-testing:2.2.6"
+
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
+    // Lifecycles only (without ViewModel or LiveData)
+    implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
+
+    // Saved state module for ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
+
+
+    // alternately - if using Java8, use the following instead of lifecycle-compiler
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+
+    // optional - helpers for implementing LifecycleOwner in a Service
+    implementation "androidx.lifecycle:lifecycle-service:$lifecycle_version"
+
+    // optional - ProcessLifecycleOwner provides a lifecycle for the whole application process
+    implementation "androidx.lifecycle:lifecycle-process:$lifecycle_version"
+
+    // optional - ReactiveStreams support for LiveData
+    implementation "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version"
+
+    // optional - Test helpers for LiveData
+    testImplementation "androidx.arch.core:core-testing:$arch_version"
+    annotationProcessor "androidx.lifecycle:lifecycle-common-java8:2.2.0"
 
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

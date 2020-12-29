@@ -30,6 +30,8 @@ import com.youthfireit.dailydeals.model.CheckOut;
 import com.youthfireit.dailydeals.network.APIinstance;
 import com.youthfireit.dailydeals.network.ArabianPureApi;
 
+import java.util.Random;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -104,16 +106,16 @@ public class CartAdapter extends FirebaseRecyclerAdapter<Cart,CartAdapter.CartVi
             @Override
             public void onClick(View v)
             {
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                /*AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Checkout");
                 View ve = LayoutInflater.from(context).inflate(R.layout.check_out_card_view,null);
-                /*final EditText name = new EditText(context);
+                *//*final EditText name = new EditText(context);
                 final EditText email = new EditText(context);
                 name.setInputType(InputType.TYPE_CLASS_TEXT);
                 email.setInputType(InputType.TYPE_CLASS_TEXT);
                 name.setHint("Name");
                 email.setHint("Email");
-                builder.setView(name);*/
+                builder.setView(name);*//*
                 builder.setView(LayoutInflater.from(context).inflate(R.layout.check_out_card_view,null));
                 builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override
@@ -144,16 +146,26 @@ public class CartAdapter extends FirebaseRecyclerAdapter<Cart,CartAdapter.CartVi
                         String scost = String.valueOf(shipping_cost);
                         String amnt = String.valueOf(amunt);
 
-                        CheckOut checkOut = new CheckOut(0, user_id,poid,title,img,att_option,qntt, phone
-                                ,name,email,city,address,message,amnt,price,scost,tracking_id);
+
+
+
+//                        0, user_id,poid,title,img,att_option,qntt, phone
+//                                ,name,email,city,address,message,amnt,price,scost,tracking_id
+                       CheckOut checkOut = new CheckOut(String.valueOf(user_id),pid,"0",title,img,att_option
+                       ,null,null,name,phone,email,city,
+                               address,message,amnt,price,scost,
+                               "pending",null,"0","cash on delivery",
+                               "null",
+                               null,null,tracking_id,phone+pid);
                         ArabianPureApi arabianPureApi = APIinstance.retroInstace().create(ArabianPureApi.class);
-                        Call<CheckOut> call = arabianPureApi.checkoutProduct(checkOut);
-                        call.enqueue(new Callback<CheckOut>() {
+                       Call<CheckOut> call = arabianPureApi.checkoutProduct(checkOut);
+                       call.enqueue(new Callback<CheckOut>() {
                             @Override
                             public void onResponse(Call<CheckOut> call, Response<CheckOut> response) {
                                 if (response.code()==200)
                                 {
                                     Toast.makeText(context, "Order placed Successfully", Toast.LENGTH_SHORT).show();
+                                    cartReference.child(uId).child(pid).removeValue();
 
                                 }
 
@@ -175,7 +187,7 @@ public class CartAdapter extends FirebaseRecyclerAdapter<Cart,CartAdapter.CartVi
                     }
                 });
                 builder.show();
-                /*userReference.child(uId).addValueEventListener(new ValueEventListener() {
+                *//*userReference.child(uId).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot)
                     {
@@ -193,7 +205,7 @@ public class CartAdapter extends FirebaseRecyclerAdapter<Cart,CartAdapter.CartVi
                     public void onCancelled(@NonNull DatabaseError error) {
 
                     }
-                });*/
+                });*//**/
             }
         });
 

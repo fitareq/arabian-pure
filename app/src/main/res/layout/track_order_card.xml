@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+<com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/order_track_phone_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="@string/phone_number"
+    android:layout_marginTop="@dimen/_5sdp"
+    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/order_track_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/order_tracking_id_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/tracking_id"
+        android:layout_below="@+id/order_track_phone_layout"
+        android:layout_marginTop="@dimen/_5sdp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/order_tracking_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <Button
+        android:id="@+id/order_track_search_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/order_tracking_id_layout"
+        android:text="@string/search"
+        android:layout_marginTop="@dimen/_5sdp"
+        />
+</RelativeLayout>

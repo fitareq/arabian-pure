@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="2dp"
+    android:padding="@dimen/_2sdp"
     android:scrollbars="vertical"
-    android:scrollbarFadeDuration="1000"
-    android:scrollbarStyle="outsideOverlay"
-    android:scrollbarSize="5dp"
+
     >
 
 
@@ -17,23 +16,25 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="2dp"
+            android:padding="@dimen/_2sdp"
             android:orientation="vertical"
             android:visibility="visible"
             android:id="@+id/aaa"
+            android:background="@color/gray"
             >
 
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_150sdp"
-                    app:cardCornerRadius="10dp">
+                    app:cardCornerRadius="@dimen/_10sdp"
+                    android:layout_margin="@dimen/_2sdp">
                         <com.smarteist.autoimageslider.SliderView
                             android:id="@+id/auto_slider"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            app:sliderAnimationDuration="2000"
-                            app:sliderIndicatorAnimationDuration="2000"
+                            app:sliderAnimationDuration="1000"
+                            app:sliderIndicatorAnimationDuration="1000"
                             app:sliderAutoCycleDirection="right"
                             app:sliderScrollTimeInSec="3"
                             />
@@ -45,8 +46,8 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_100sdp"
-                    app:cardCornerRadius="5dp"
-                    android:layout_marginTop="15dp">
+                    app:cardCornerRadius="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_15sdp">
                         <com.smarteist.autoimageslider.SliderView
                             android:id="@+id/banner_view"
                             android:layout_width="match_parent"
@@ -60,33 +61,36 @@
 
 
 
-                <RelativeLayout
+
+
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:weightSum="2"
                     android:orientation="horizontal">
                         <TextView
                             android:id="@+id/category_tv"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:text="@string/categories"
                             android:textSize="@dimen/_16sdp"
                             android:textColor="@color/black"
-                            android:layout_alignParentStart="true"
-                            android:layout_alignParentLeft="true" />
+                            android:layout_weight="1"/>
                         <TextView
                             android:id="@+id/category_show_all"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:text="@string/show_all"
                             android:textSize="@dimen/_15sdp"
                             android:textColor="@color/black"
-                            android:layout_alignParentRight="true"
-                            android:layout_alignParentEnd="true"
+                            android:gravity="end"
+                            android:layout_weight="1"
                             app:drawableEndCompat="@drawable/ic_baseline_arrow_forward_24"
                             app:drawableRightCompat="@drawable/ic_baseline_arrow_forward_24"
                              />
-                </RelativeLayout>
+                </LinearLayout>
 
 
 
@@ -94,17 +98,17 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/_1sdp"
                     android:background="@color/gray"
-                    android:padding="5dp"
-                    android:layout_marginTop="10dp"/>
+                    android:padding="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"/>
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/category_recyclerview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:scrollbars="vertical"
-                    android:layout_marginTop="5dp"
-                    android:padding="5dp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:padding="@dimen/_5sdp"
                     />
 
 
@@ -115,106 +119,72 @@
 
 
 
-
-
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/_1sdp"
                     android:background="@color/gray"
-                    android:padding="5dp"
-                    android:layout_marginTop="10dp"/>
+                    android:padding="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/breakfast"
+                    android:text="@string/week_deals"
                     android:textSize="@dimen/_16sdp"
                     android:textColor="@color/black"
-                    android:layout_marginTop="5dp"/>
+                    android:layout_marginTop="@dimen/_5sdp"/>
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/_1sdp"
                     android:background="@color/gray"
-                    android:padding="5dp"
-                    android:layout_marginTop="10dp"/>
+                    android:padding="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"/>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/breakfast_recyclerview"
+                    android:id="@+id/week_deals_recyclerview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:scrollbars="horizontal"
-                    />
-
-
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/gray"
-                    android:padding="5dp"
-                    android:layout_marginTop="10dp"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/healthy_foods"
-                    android:textSize="@dimen/_16sdp"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="5dp"/>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/gray"
-                    android:padding="5dp"
-                    android:layout_marginTop="10dp"/>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/healthy_foods_recyclerview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:scrollbars="horizontal"
-                    />
-
-
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/gray"
-                    android:padding="5dp"
-                    android:layout_marginTop="10dp"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/local_bd_food"
-                    android:textSize="@dimen/_16sdp"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="5dp"/>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/gray"
-                    android:padding="5dp"
-                    android:layout_marginTop="10dp"/>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/local_bd_foods_recyclerview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:scrollbars="horizontal"
                     />
 
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/_1sdp"
                     android:background="@color/gray"
-                    android:padding="5dp"
-                    android:layout_marginTop="10dp"/>
+                    android:padding="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/top_rated"
+                    android:textSize="@dimen/_16sdp"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="@dimen/_5sdp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="@color/gray"
+                    android:padding="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/top_rated_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:scrollbars="horizontal"
+                    />
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="@color/gray"
+                    android:padding="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -223,14 +193,14 @@
                     android:textSize="@dimen/_16sdp"
                     android:textColor="@color/black"
                     android:gravity="center"
-                    android:layout_marginTop="5dp"/>
+                    android:layout_marginTop="@dimen/_5sdp"/>
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/_1sdp"
                     android:background="@color/gray"
-                    android:padding="5dp"
-                    android:layout_marginTop="10dp"/>
+                    android:padding="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"/>
 
 
 
@@ -241,7 +211,7 @@
                     android:id="@+id/product_recyclerview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="@dimen/_5sdp"
                 />
 
 
